@@ -12,7 +12,7 @@ class Layout extends React.Component {
     render() {
         return (
             <div className="layout">
-                <div className="menu" onClick={this.handleClick}>
+                <div className="menu" onClick={this.menuClick}>
                     <img src={menuIcon} alt="" height= "100%" width= "100%"/>
                     <ul style={{ display: 'none' }}>
                         <li><a href="./"><img src={aboutIcon} alt="" className="menuIcon" />About</a></li>
@@ -28,12 +28,20 @@ class Layout extends React.Component {
                     <input className="searchIcon" title="search" alt="search" type="image" src={searchIcon} />
                     <input className="searchIcon" title="search randomly" alt="search randomly" type="image" src={searchRandomIcon} />
                 </form>
+                <div className="langageToggle">
+                    <span className="langageLabel" style={{margin: '4px 2px 0px 0px', fontWeight: 'bold', textDecoration: 'underline', cursor: 'pointer'}} onClick={this.langageToggle}> Fr </span >
+                    <label className="switch" onClick={this.langageToggle}>
+                        <input type="checkbox"/>
+                        <span className="slider round"/>
+                    </label>
+                    <span className="langageLabel" style={{margin: '4px 0px 0px 2px', fontWeight: 'bold', cursor: 'pointer'}} onClick={this.langageToggle}> En </span >
+                </div>
             </div>
                 
             );
         }
 
-    handleClick() {
+    menuClick() {
         let menu = document.querySelectorAll('.menu ul')[0];
         //toggle menu apparence
         if (menu.style.display === "none") {
@@ -46,6 +54,30 @@ class Layout extends React.Component {
                     menu.style.marginTop = "0em";
         }
         
+    }
+
+    langageToggle(event) {
+        if(event.currentTarget.localName === 'span') //event come from clicking the labels
+        {
+            //switch the langage toggle button
+            let currState = document.querySelectorAll('.langageToggle .switch input')[0].checked;
+            document.querySelectorAll('.langageToggle .switch input')[0].checked = !currState;
+        }
+
+        let fr = document.querySelectorAll('.langageToggle .langageLabel')[0];
+        let en = document.querySelectorAll('.langageToggle .langageLabel')[1];
+        let isEnlish = document.querySelectorAll('.langageToggle .switch input')[0].checked;
+
+        if(isEnlish)
+        {
+            en.style.textDecoration = "underline";
+            fr.style.textDecoration = "";
+        }
+        else 
+        { 
+            fr.style.textDecoration = "underline";
+            en.style.textDecoration = "";
+        }
     }
 }
         
