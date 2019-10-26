@@ -2,9 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Layout from './Layout'
+import Content from './Content'
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<Layout />, document.getElementById('root'));
+ReactDOM.render(<div>
+                   <Layout /> 
+                   <Content />
+                </div>
+    
+    ,document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
