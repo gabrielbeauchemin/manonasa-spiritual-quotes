@@ -17,7 +17,7 @@ class Layout extends React.Component {
                     <ul style={{ display: 'none' }}>
                         <li><a href="./"><img src={aboutIcon} alt="" className="menuIcon" />About</a></li>
                         <li><a href="./"><img src={contactIcon} alt="" className="menuIcon"/>Download all quotes</a></li>
-                        <li><a href="./"><img src={downloadIcon} alt="" className="menuIcon"/>Contact me</a></li>
+                        <li><a href="./"><img src={downloadIcon} alt="" className="menuIcon"/>Contact</a></li>
                     </ul>
                 </div>
                 <div className="logo" onClick={this.handleClick}>
@@ -30,7 +30,7 @@ class Layout extends React.Component {
                 </form>
                 <div className="langageToggle">
                     <span className="langageLabel" style={{margin: '4px 2px 0px 0px', fontWeight: 'bold', textDecoration: 'underline', cursor: 'pointer'}} onClick={this.langageToggle}> Fr </span >
-                    <label className="switch" onClick={this.langageToggle}>
+                    <label className="switch" onClick={ () => {this.langageToggle()}}>
                         <input type="checkbox"/>
                         <span className="slider round"/>
                     </label>
