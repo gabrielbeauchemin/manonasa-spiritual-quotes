@@ -10,6 +10,7 @@ body {
   display: flex;
   flex-wrap: nowrap;
   height: 10%;
+  margin-bottom: 10px;
 }
 
 /* Button Parameters with drop down */
@@ -94,6 +95,8 @@ body {
 
 .searchBox input[type=text]{
   width: 80%;
+  border-radius: 4px;
+  border-color: black;
 }
 
 .searchBox .searchIcon{
@@ -187,6 +190,8 @@ input:checked + .slider:before {
 
 .filters{
   width: 20%;
+  margin-right: 30px;
+  margin-left: -30px;
 }
 .filter{
   width: auto;
@@ -201,10 +206,17 @@ input:checked + .slider:before {
 }
 
 .quotes{
+  display: flex;
+  flex-direction: column;
   width: auto;
 }
 .quote{
   width: auto;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+  font-size: 1.15em;
+
 }
 
 /* End content */

@@ -31,13 +31,13 @@ class Content extends React.Component {
                 </div>
                 <div className="quotes">
                     <div className="quote">
-                     "Your own Self-Realization is the greatest service you can render the world." - Ramana
+                     Your own Self-Realization is the greatest service you can render the world. <br/> <span style={{color: "gray"}}> -Ramana </span> 
                     </div>
                     <div className="quote">
-                    "Happiness is your nature. It is not wrong to desire it. What is wrong is seeking it outside when it is inside." -Ramana
+                    Happiness is your nature. It is not wrong to desire it. What is wrong is seeking it outside when it is inside. <br/> <span style={{color: "gray"}}> -Ramana </span> 
                     </div>
                     <div className="quote">
-                    “Wanting to reform the world without discovering one's true self is like trying to cover the world with leather to avoid the pain of walking on stones and thorns. It is much simpler to wear shoes.” -Ramana
+                    Wanting to reform the world without discovering one's true self is like trying to cover the world with leather to avoid the pain of walking on stones and thorns. It is much simpler to wear shoes. <br/> <span style={{color: "gray"}}> -Ramana </span> 
                     </div>
                 </div>
             </div>
