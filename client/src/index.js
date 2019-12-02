@@ -5,7 +5,8 @@ import Layout from './Layout'
 import Content from './Content'
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<div>
+ReactDOM.render(
+                <div>
                    <Layout /> 
                    <Content />
                 </div>
