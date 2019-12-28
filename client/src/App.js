@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Layout from './Layout'
+import Content from './Content'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Quote extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          searchQuery: "",
+        }
+
+        this.updateSearchQuery = this.updateSearchQuery.bind(this)
+    }
+
+    render() {
+        return (
+                <div>
+                   <Layout updateSearchQuery={this.updateSearchQuery}/> 
+                   <Content searchQuery={this.state.searchQuery}/>
+                </div>
+        )
+    }
+
+    updateSearchQuery(searchQuery)
+    {
+        this.setState({ searchQuery: searchQuery });
+    }
 }
 
-export default App;
+export default Quote;

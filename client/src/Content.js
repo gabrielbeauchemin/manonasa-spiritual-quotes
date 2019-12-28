@@ -6,11 +6,19 @@ class Content extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            quotes : []
+            quotes : [],
+            lastSearchQuery : "",
+            quotesReady : true
         };
     }
 
     render() {
+        if(this.state.quotesReady){
+            this.setState({ quotesReady: false });
+        }
+        else{
+            this.actualiseQuotes();
+        }
         return (
             <div className="content">
                 <div className="filters">
@@ -42,7 +50,9 @@ class Content extends React.Component {
                     {this.state.quotes.map((quote, index) =>
                         <Quote quote={quote.quote} author={quote.author} />
                     )}
-                    <button type="button" className="moreQuoteButton">Show more</button>
+                    {this.state.quotes.length > 0 &&
+                        <button type="button" className="moreQuoteButton">Show more</button>
+                    }
                 </div>
 
             </div>
@@ -50,9 +60,19 @@ class Content extends React.Component {
     }
 
     componentDidMount() {
-        fetch('/quotes')
-            .then(res => res.json() )
-            .then(res => this.setState({ quotes: res })) ;
+    }
+
+    actualiseQuotes()
+    {
+        fetch(`/quotes?q=${this.props.searchQuery.replace(" ", "+")}`)
+        .then(res => res.json() )
+        .then(res => this.setState({ quotes: res })) 
+        .then(res => this.setState({ quotesReady: true }));
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.searchQuery !== this.props.searchQuery ||
+               nextState.quotesReady;
     }
 
 }

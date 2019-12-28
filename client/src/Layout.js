@@ -23,10 +23,10 @@ class Layout extends React.Component {
                 <div className="logo" onClick={this.handleClick}>
                     <img src={logo} alt="" height= "100%" width= "100%"/>
                 </div>
-                <form className="searchBox" action="./">
+                <form className="searchBox" onSubmit= {(e) => {e.preventDefault(); this.props.updateSearchQuery(e.target[0].value);}}>
                     <input type="text" alt="" placeholder="Search Spiritual Quotes" name="search" />
                     <input className="searchIcon" title="search" alt="search" type="image" src={searchIcon} />
-                    <input className="searchIcon" title="search randomly" alt="search randomly" type="image" src={searchRandomIcon} />
+                    <input className="searchIcon" title="search randomly" alt="search randomly" type="image" src={searchRandomIcon}/>
                 </form>
                 <div className="langageToggle">
                     <span className="langageLabel" style={{margin: '4px 2px 0px 0px', fontWeight: 'bold', textDecoration: 'underline', cursor: 'pointer'}} onClick={this.langageToggle}> Fr </span >

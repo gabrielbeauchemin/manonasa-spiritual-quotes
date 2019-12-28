@@ -2,16 +2,13 @@ let path = require('path');
 let appRoot = path.resolve(__dirname);
 let dbPath = path.join(appRoot, 'SpiritualQuotes.db');
 const Database = require('better-sqlite3');
-const db = new Database(dbPath, { fileMustExist: true, verbose: console.log });
+const db = new Database(dbPath, { fileMustExist: true});
 
 let getQuote = function(author, searchQueries, indexBegin, nbrQuotes)
 {
-  const stmt = db.prepare("SELECT * FROM SpiritualQuotes"); //WHERE $author
-  const spiritualQuotes = stmt.all(
-  // {
-  //   // author: 'Ramana',
-  // }
-);
+  const query = `SELECT * FROM SpiritualQuotesSearch WHERE quote MATCH "${searchQueries}" LIMIT 100`;
+  const stmt = db.prepare(query); 
+  const spiritualQuotes = stmt.all();
   return spiritualQuotes;
 }
 
