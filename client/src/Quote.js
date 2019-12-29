@@ -1,4 +1,6 @@
 import React from 'react';
+import copyIcon from './icons/copy.svg';
+import showMoreIcon from './icons/showMore.svg';
 
 class Quote extends React.Component {
     render() {
@@ -6,10 +8,15 @@ class Quote extends React.Component {
             <div className="quote">
                      {this.props.quote} <br/> <span style={{color: "gray"}}> -{this.props.author} </span>
                      <br/>
+                     <br/>
                      <div style={{backgroundColor: "#f4f6f9"}}>
                         <span> 
-                            <button type="button" className="quoteButton" onClick={((e) => this.copy( this.props.quote + " -" + this.props.author ))} >Copy</button>
-                            <button type="button" className="quoteButton">Show more</button> 
+                            <button type="button" title="Copy quote to clipboard" className="quoteButton" onClick={((e) => this.copy( this.props.quote + " -" + this.props.author ))} >
+                            <img src={copyIcon} alt="" className="quoteIcon" />
+                            </button>
+                            <button type="button" title="See more information about the quote" className="quoteButton">
+                            <img src={showMoreIcon} alt="" className="quoteIcon" />
+                            </button> 
                         </span>
                      </div>
             </div>

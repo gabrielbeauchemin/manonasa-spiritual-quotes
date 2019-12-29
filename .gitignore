@@ -42,3 +42,5 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
+
+/package-lock.json
