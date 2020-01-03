@@ -24,7 +24,7 @@ class Layout extends React.Component {
                     <img src={logo} alt="" height= "100%" width= "100%"/>
                 </div>
                 <form className="searchBox" onSubmit= {(e) => {e.preventDefault(); this.props.updateSearchQuery(e.target[0].value);}}>
-                    <input type="text" alt="" placeholder="Search Spiritual Quotes" name="search" />
+                    <input autoFocus type="text" alt="" placeholder="Search Spiritual Quotes" name="search" />
                     <input className="searchIcon" title="search" alt="search" type="image" src={searchIcon} />
                     <input className="searchIcon" title="search randomly" alt="search randomly" type="image" src={searchRandomIcon}/>
                 </form>

@@ -44,3 +44,4 @@ chrome-user-data
 *.swo
 
 /package-lock.json
+/node_modules

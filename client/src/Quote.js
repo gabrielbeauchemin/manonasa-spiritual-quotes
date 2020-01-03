@@ -1,8 +1,31 @@
 import React from 'react';
 import copyIcon from './icons/copy.svg';
 import showMoreIcon from './icons/showMore.svg';
+import Modal from 'react-modal';
 
 class Quote extends React.Component {
+
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            modalIsOpen: false,
+            modalStyle : {
+                content : {
+                  top                   : '45%',
+                  left                  : '50%',
+                  right                 : '20%',
+                  bottom                : '0%',
+                  marginRight           : '-50%',
+                  transform             : 'translate(-50%, -50%)'
+                }
+              }
+        };
+
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
     render() {
         return (
             <div className="quote">
@@ -14,7 +37,40 @@ class Quote extends React.Component {
                             <button type="button" title="Copy quote to clipboard" className="quoteButton" onClick={((e) => this.copy( this.props.quote + " -" + this.props.author ))} >
                             <img src={copyIcon} alt="" className="quoteIcon" />
                             </button>
-                            <button type="button" title="See more information about the quote" className="quoteButton">
+                            <button type="button" title="See more information about the quote" className="quoteButton" onMouseDown={this.openModal}>
+                            <Modal
+                                isOpen={this.state.modalIsOpen}
+                                onRequestClose={this.closeModal}
+                                style={this.state.modalStyle}
+                                closeTimeoutMS={250}
+                            >
+                                <div onClick={this.closeModal} className="close"/> <br/>
+                                <h3 style={{margin: "0 auto", width: "40%"}}>Complete information about the quote</h3> <br/>
+                                <div className="moreQuoteFields">
+                                    <div className="moreQuoteField">
+                                        <b>Quote:&nbsp;</b> <p>{this.props.quote}</p> 
+                                    </div>
+                                    <div className="moreQuoteField">
+                                        <b>Author:&nbsp;</b> <p>{this.props.author}</p> 
+                                    </div>
+                                    <div className="moreQuoteField">
+                                        <b>Source:&nbsp;</b> <p>{this.props.source}</p> 
+                                    </div>
+                                    <div className="moreQuoteField">
+                                        <b>Language:&nbsp;</b> <p>{this.props.language}</p> 
+                                    </div>
+                                    {this.props.chapter !== undefined &&
+                                        <div className="moreQuoteField">
+                                            <b>Chapter:&nbsp;</b> <p>{this.props.chapter}</p> 
+                                        </div>
+                                    }
+                                    {this.props.number !== undefined &&
+                                        <div className="moreQuoteField">
+                                            <b>Number:&nbsp;</b> <p>{this.props.number}</p> 
+                                        </div>
+                                    }
+                                </div>
+                            </ Modal>
                             <img src={showMoreIcon} alt="" className="quoteIcon" />
                             </button> 
                         </span>
@@ -39,6 +95,14 @@ class Quote extends React.Component {
         document.execCommand('copy');
         // Remove temporary element
         document.body.removeChild(el);
+    }
+
+    openModal() {
+        this.setState({ modalIsOpen: true });
+    }
+
+    closeModal() {
+        this.setState({ modalIsOpen: false });
     }
 }
         

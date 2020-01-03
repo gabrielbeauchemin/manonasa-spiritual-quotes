@@ -6,7 +6,7 @@ const db = new Database(dbPath, { fileMustExist: true});
 
 let getQuote = function(author, searchQueries, indexBegin, nbrQuotes)
 {
-  const query = `SELECT * FROM SpiritualQuotesSearch WHERE quote MATCH "${searchQueries}" LIMIT 100`;
+  const query = `SELECT * FROM SpiritualQuotesSearch WHERE quote MATCH "${searchQueries}" LIMIT 10`;
   const stmt = db.prepare(query); 
   const spiritualQuotes = stmt.all();
   return spiritualQuotes;
