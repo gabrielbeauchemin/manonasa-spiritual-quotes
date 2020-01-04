@@ -8,7 +8,10 @@ class Content extends React.Component {
         this.state = {
             quotes : [],
             lastSearchQuery : "",
-            quotesReady : true
+            quotesReady : true,
+            quotesPerFetch : 15,
+            quotesFetched : 0,
+            allQuotesFetched : false
         };
     }
 
@@ -45,10 +48,9 @@ class Content extends React.Component {
                         <Quote quote={quote.quote} author={quote.author} source={quote.source} language={quote.source} chapter={quote.chapter} number={quote.number} />
                     )}
                     {this.state.quotes.length > 0 &&
-                        <button type="button" className="moreQuoteButton">Show more</button>
+                        <button type="button" className="moreQuoteButton" onClick={() => this.showMoreQuotes()} disabled={this.state.allQuotesFetched}>Show more</button>
                     }
                 </div>
-
             </div>
         );
     }
@@ -61,25 +63,40 @@ class Content extends React.Component {
         this.actualiseQuotes();
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.searchQuery !== this.props.searchQuery ||
+               nextState.quotesReady;
+    }
+
     actualiseQuotes()
     {
         if(this.state.quotesReady){
             this.setState({ quotesReady: false });
         }
         else{
-            fetch(`/quotes?q=${this.props.searchQuery.replace(" ", "+")}`)
-            .then(res => res.json() )
-            .then(res => this.setState({ quotes: res })) 
-            .then(res => this.setState({ quotesReady: true }));
+            this.setState({quotesFetched : 0}, 
+            () => this.setState({allQuotesFetched : false}, 
+            () => { fetch(`/quotes?q=${this.props.searchQuery.replace(" ", "+")}&count=${this.state.quotesPerFetch}&offset=${this.state.quotesFetched}`)
+                    .then(res => res.json() )
+                    .then(res => this.setState({ quotes: res }))
+                    .then(res => this.setState({ quotesReady: true })) })); 
         }
-        
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.searchQuery !== this.props.searchQuery ||
-               nextState.quotesReady;
+    showMoreQuotes()
+    {
+        this.setState({quotesFetched : this.state.quotesFetched + this.state.quotesPerFetch});
+        fetch(`/quotes?q=${this.props.searchQuery.replace(" ", "+")}&count=${this.state.quotesPerFetch}&offset=${this.state.quotesFetched}`)
+            .then(res => res.json() )
+            .then(res => {
+                this.setState({ quotes: res.concat(this.state.quotes) });
+                if(res.length < this.state.quotesPerFetch)
+                {
+                    this.setState({allQuotesFetched : true});
+                } 
+            })
+            .then( () => this.setState({ quotesReady: true }));
     }
-
 }
 
 export default Content;

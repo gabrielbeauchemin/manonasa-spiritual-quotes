@@ -237,6 +237,7 @@ input:checked + .slider:before {
   width: 10%;
   border-radius: 3px;
   align-self: center;
+  margin-bottom: 20px;
 }
 
 .moreQuoteFields{
