@@ -190,8 +190,8 @@ input:checked + .slider:before {
 }
 
 .filters{
-  width: 20%;
-  margin-right: 30px;
+  width: 18%;
+  margin-right: 10px;
   margin-left: -30px;
 }
 .filter{
@@ -203,6 +203,13 @@ input:checked + .slider:before {
   font-size: 1.1em;
 }
 .filterValues{
+  width: auto;
+}
+.filterValue{
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   width: auto;
 }
 

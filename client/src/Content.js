@@ -1,4 +1,5 @@
 import React from 'react';
+import Filter from "./Filter"
 import Quote from './Quote';
 
 class Content extends React.Component {
@@ -11,7 +12,11 @@ class Content extends React.Component {
             quotesReady : true,
             quotesPerFetch : 15,
             quotesFetched : 0,
-            allQuotesFetched : false
+            allQuotesFetched : false,
+            authorFilters : [],
+            authorFiltersSelected : [],
+            sourceFilters : [],
+            sourceFiltersSelected : []
         };
     }
 
@@ -19,29 +24,8 @@ class Content extends React.Component {
         return (
             <div className="content">
                 <div className="filters">
-                    <ul className="filter">
-                        <div className="filterCategory">
-                            Autor <br />
-                        </div>
-
-                        <div className="filterValues">
-                            <input type="checkbox" name="autor" value="Ramana" /> Ramana <br />
-                            <input type="checkbox" name="autor" value="Michael Langford" /> Michael Langford<br />
-                            <input type="checkbox" name="autor" value="Robert Adams" /> Robert Adams<br />
-                        </div>
-                    </ul>
-                    <ul className="filter">
-                        <div className="filterCategory">
-                            Livre <br />
-                        </div>
-
-                        <div className="filterValues">
-                            <input type="checkbox" name="livre" value="livre1" /> Livre1 <br />
-                            <input type="checkbox" name="livre" value="livre2" /> Livre2<br />
-                            <input type="checkbox" name="livre" value="livre3" /> Livre3<br />
-                        </div>
-                    </ul>
-
+                    <Filter display="Author" values={this.state.authorFilters} onFilterChange={(authorFilters) => this.updateAuthorFilters(authorFilters)}/>
+                    <Filter display="Book" values={this.state.sourceFilters} onFilterChange={(sourceFilters) => this.updateSourceFilters(sourceFilters)}/>
                 </div>
                 <div className="quotes">
                     {this.state.quotes.map((quote, index) =>
@@ -60,6 +44,7 @@ class Content extends React.Component {
     }
 
     componentDidUpdate() {
+        debugger;
         this.actualiseQuotes();
     }
 
@@ -70,15 +55,27 @@ class Content extends React.Component {
 
     actualiseQuotes()
     {
+        debugger;
         if(this.state.quotesReady){
             this.setState({ quotesReady: false });
         }
         else{
             this.setState({quotesFetched : 0}, 
             () => this.setState({allQuotesFetched : false}, 
-            () => { fetch(`/quotes?q=${this.props.searchQuery.replace(" ", "+")}&count=${this.state.quotesPerFetch}&offset=${this.state.quotesFetched}`)
+            () => { fetch(`/quotes?q=${this.props.searchQuery.replace(" ", "+")}&` +
+                           `authors=${this.state.authorFiltersSelected}&` +
+                           `sources=${this.state.sourceFiltersSelected}&` +
+                           `count=${this.state.quotesPerFetch}&` +
+                           `offset=${this.state.quotesFetched}`)
                     .then(res => res.json() )
-                    .then(res => this.setState({ quotes: res }))
+                    .then(res => this.setState({ quotes: res }, () => {
+                        this.setState({ authorFilters: this.getFilterValues("author"),
+                                        sourceFilters: this.getFilterValues("source"),
+                                        //to remove
+                                        authorFiltersSelected: this.getFilterValues("author"),
+                                        sourceFiltersSelected: this.getFilterValues("source")
+                                    });
+                    }))
                     .then(res => this.setState({ quotesReady: true })) })); 
         }
     }
@@ -96,6 +93,25 @@ class Content extends React.Component {
                 } 
             })
             .then( () => this.setState({ quotesReady: true }));
+    }
+
+    getFilterValues(filterName) {
+        let filterValues = [];
+        this.state.quotes.map((value, index) => filterValues.push(value[filterName]));
+        return [...new Set(filterValues)];
+    }
+
+    updateAuthorFilters(authorFilters)
+    {
+        debugger;
+        this.setState({authorFiltersSelected : authorFilters}, 
+            this.actualiseQuotes);
+    }
+
+    updateSourceFilters(sourceFilters)
+    {
+        this.setState({sourceFiltersSelected : sourceFilters}, 
+            this.actualiseQuotes);
     }
 }
 
