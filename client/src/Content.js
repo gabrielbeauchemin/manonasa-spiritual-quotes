@@ -62,7 +62,7 @@ class Content extends React.Component {
         else{
             this.setState({quotesFetched : 0}, 
             () => this.setState({allQuotesFetched : false}, 
-            () => { fetch(`/quotes?q=${this.props.searchQuery.replace(" ", "+")}&` +
+            () => { fetch(`/quotes?q=${this.props.searchQuery}&` +
                            `authors=${this.state.authorFiltersSelected}&` +
                            `sources=${this.state.sourceFiltersSelected}&` +
                            `count=${this.state.quotesPerFetch}&` +
@@ -71,9 +71,6 @@ class Content extends React.Component {
                     .then(res => this.setState({ quotes: res }, () => {
                         this.setState({ authorFilters: this.getFilterValues("author"),
                                         sourceFilters: this.getFilterValues("source"),
-                                        //to remove
-                                        authorFiltersSelected: this.getFilterValues("author"),
-                                        sourceFiltersSelected: this.getFilterValues("source")
                                     });
                     }))
                     .then(res => this.setState({ quotesReady: true })) })); 
