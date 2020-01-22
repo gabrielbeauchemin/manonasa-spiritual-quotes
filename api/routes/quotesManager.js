@@ -4,11 +4,26 @@ let dbPath = path.join(appRoot, 'SpiritualQuotes.db');
 const Database = require('better-sqlite3');
 const db = new Database(dbPath, { fileMustExist: true });
 
-let getQuote = function (authors, sources, searchQueries, nbrQuotes = 15, indexBegin = 0) {
+let getQuotes = function (authors, sources, searchQueries, nbrQuotes = 15, indexBegin = 0) {
   const query = `SELECT * FROM SpiritualQuotesSearch 
                 ${formatWhereClause(searchQueries, { 'author': authors, 'source': sources })}
                 LIMIT ${nbrQuotes} OFFSET ${indexBegin}`;
-  console.log(query);
+  const stmt = db.prepare(query);
+  const spiritualQuotes = stmt.all();
+  return spiritualQuotes;
+}
+
+let getAuthors = function (searchQueries) {
+  const query = `SELECT DISTINCT author FROM SpiritualQuotesSearch 
+                 WHERE SpiritualQuotesSearch MATCH '${formatFilter('quote', [searchQueries])}'`;
+  const stmt = db.prepare(query);
+  const spiritualQuotes = stmt.all();
+  return spiritualQuotes;
+}
+
+let getSources = function (searchQueries) {
+  const query = `SELECT DISTINCT source FROM SpiritualQuotesSearch 
+                 WHERE SpiritualQuotesSearch MATCH '${formatFilter('quote', [searchQueries])}'`;
   const stmt = db.prepare(query);
   const spiritualQuotes = stmt.all();
   return spiritualQuotes;
@@ -50,4 +65,6 @@ function formatFilter(filterName, filterValues) {
   return format;
 }
 
-exports.getQuote = getQuote;
+exports.getQuotes = getQuotes;
+exports.getAuthors = getAuthors;
+exports.getSources = getSources;

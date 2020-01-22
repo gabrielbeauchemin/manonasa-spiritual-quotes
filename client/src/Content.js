@@ -7,16 +7,16 @@ class Content extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            quotes : [],
-            lastSearchQuery : "",
-            quotesReady : true,
-            quotesPerFetch : 15,
-            quotesFetched : 0,
-            allQuotesFetched : false,
-            authorFilters : [],
-            authorFiltersSelected : [],
-            sourceFilters : [],
-            sourceFiltersSelected : []
+            quotes: [],
+            lastSearchQuery: "",
+            quotesReady: true,
+            quotesPerFetch: 15,
+            quotesFetched: 0,
+            allQuotesFetched: false,
+            authorFilters: [],
+            authorFiltersSelected: [],
+            sourceFilters: [],
+            sourceFiltersSelected: []
         };
     }
 
@@ -24,8 +24,8 @@ class Content extends React.Component {
         return (
             <div className="content">
                 <div className="filters">
-                    <Filter display="Author" values={this.state.authorFilters} onFilterChange={(authorFilters) => this.updateAuthorFilters(authorFilters)}/>
-                    <Filter display="Book" values={this.state.sourceFilters} onFilterChange={(sourceFilters) => this.updateSourceFilters(sourceFilters)}/>
+                    <Filter display="Author" values={this.state.authorFilters} onFilterChange={(authorFilters) => this.updateAuthorFilters(authorFilters)} />
+                    <Filter display="Book" values={this.state.sourceFilters} onFilterChange={(sourceFilters) => this.updateSourceFilters(sourceFilters)} />
                 </div>
                 <div className="quotes">
                     {this.state.quotes.map((quote, index) =>
@@ -44,71 +44,74 @@ class Content extends React.Component {
     }
 
     componentDidUpdate() {
-        debugger;
         this.actualiseQuotes();
     }
 
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.searchQuery !== this.props.searchQuery ||
-               nextState.quotesReady;
+            nextState.quotesReady;
     }
 
-    actualiseQuotes()
-    {
-        debugger;
-        if(this.state.quotesReady){
+    actualiseQuotes() {
+        if (this.state.quotesReady) {
             this.setState({ quotesReady: false });
         }
-        else{
-            this.setState({quotesFetched : 0}, 
-            () => this.setState({allQuotesFetched : false}, 
-            () => { fetch(`/quotes?q=${this.props.searchQuery}&` +
-                           `authors=${this.state.authorFiltersSelected}&` +
-                           `sources=${this.state.sourceFiltersSelected}&` +
-                           `count=${this.state.quotesPerFetch}&` +
-                           `offset=${this.state.quotesFetched}`)
-                    .then(res => res.json() )
-                    .then(res => this.setState({ quotes: res }, () => {
-                        this.setState({ authorFilters: this.getFilterValues("author"),
-                                        sourceFilters: this.getFilterValues("source"),
-                                    });
-                    }))
-                    .then(res => this.setState({ quotesReady: true })) })); 
+        else {
+            this.setState({ quotesFetched: 0, allQuotesFetched: false },
+                () => {
+                    this.fetchFilterValues();
+                    this.fetchQuotes();
+                });
         }
     }
 
-    showMoreQuotes()
-    {
-        this.setState({quotesFetched : this.state.quotesFetched + this.state.quotesPerFetch});
+    fetchFilterValues() {
+        fetch(`/authors?q=${this.props.searchQuery}`)
+            .then(res => res.json())
+            .then(res => {
+                let authors = [];
+                res.forEach(x => authors.push(x.author));
+                this.setState({ authorFilters: authors })
+            });
+        fetch(`/sources?q=${this.props.searchQuery}`)
+            .then(res => res.json())
+            .then(res => {
+                let sources = [];
+                res.forEach(x => sources.push(x.source));
+                this.setState({ sourceFilters: sources })
+            });
+    }
+
+    fetchQuotes() {
+        fetch(`/quotes?q=${this.props.searchQuery}&` +
+            `authors=${this.state.authorFiltersSelected}&` +
+            `sources=${this.state.sourceFiltersSelected}&` +
+            `count=${this.state.quotesPerFetch}&` +
+            `offset=${this.state.quotesFetched}`)
+            .then(res => res.json())
+            .then(res =>
+                this.setState({ quotes: res, quotesReady: true }));
+    }
+
+    showMoreQuotes() {
+        this.setState({ quotesFetched: this.state.quotesFetched + this.state.quotesPerFetch });
         fetch(`/quotes?q=${this.props.searchQuery.replace(" ", "+")}&count=${this.state.quotesPerFetch}&offset=${this.state.quotesFetched}`)
-            .then(res => res.json() )
+            .then(res => res.json())
             .then(res => {
                 this.setState({ quotes: res.concat(this.state.quotes) });
-                if(res.length < this.state.quotesPerFetch)
-                {
-                    this.setState({allQuotesFetched : true});
-                } 
+                if (res.length < this.state.quotesPerFetch) {
+                    this.setState({ allQuotesFetched: true });
+                }
             })
-            .then( () => this.setState({ quotesReady: true }));
+            .then(() => this.setState({ quotesReady: true }));
     }
 
-    getFilterValues(filterName) {
-        let filterValues = [];
-        this.state.quotes.map((value, index) => filterValues.push(value[filterName]));
-        return [...new Set(filterValues)];
+    updateAuthorFilters(authorFilters) {
+        this.setState({ authorFiltersSelected: authorFilters }, this.fetchQuotes);
     }
 
-    updateAuthorFilters(authorFilters)
-    {
-        debugger;
-        this.setState({authorFiltersSelected : authorFilters}, 
-            this.actualiseQuotes);
-    }
-
-    updateSourceFilters(sourceFilters)
-    {
-        this.setState({sourceFiltersSelected : sourceFilters}, 
-            this.actualiseQuotes);
+    updateSourceFilters(sourceFilters) {
+        this.setState({ sourceFiltersSelected: sourceFilters }, this.fetchQuotes);
     }
 }
 
