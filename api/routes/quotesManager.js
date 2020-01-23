@@ -47,7 +47,7 @@ function formatWhereClause(searchQueries, filtersDict) {
 
 function removeEmptyFilters(filtersDict) {
   return Object.keys(filtersDict)
-    .filter(key => filtersDict[key].length > 0)
+    .filter(key => filtersDict[key] != null && filtersDict[key].length > 0)
     .reduce((obj, key) => {
       obj[key] = filtersDict[key];
       return obj;

@@ -14,9 +14,9 @@ class Content extends React.Component {
             quotesFetched: 0,
             allQuotesFetched: false,
             authorFilters: [],
-            authorFiltersSelected: [],
+            authorFiltersSelected: null,
             sourceFilters: [],
-            sourceFiltersSelected: []
+            sourceFiltersSelected: null
         };
     }
 
@@ -82,36 +82,53 @@ class Content extends React.Component {
             });
     }
 
-    fetchQuotes() {
+    fetchQuotes(accumulateQuotes = false) {
+        let authorFilter = this.state.authorFiltersSelected == null ? '' : `authors=${this.state.authorFiltersSelected}&`;
+        let sourceFilter = this.state.sourceFiltersSelected == null ? '' : `sources=${this.state.sourceFiltersSelected}&`;
+
         fetch(`/quotes?q=${this.props.searchQuery}&` +
-            `authors=${this.state.authorFiltersSelected}&` +
-            `sources=${this.state.sourceFiltersSelected}&` +
+            authorFilter +
+            sourceFilter +
             `count=${this.state.quotesPerFetch}&` +
             `offset=${this.state.quotesFetched}`)
             .then(res => res.json())
-            .then(res =>
-                this.setState({ quotes: res, quotesReady: true }));
+            .then(res => {
+                if (accumulateQuotes) {
+                    this.setState({
+                        quotes: res.concat(this.state.quotes),
+                        quotesReady: true,
+                        allQuotesFetched: res.length < this.state.quotesPerFetch
+                    });
+                }
+                else {
+                    this.setState({
+                        quotes: res,
+                        quotesReady: true,
+                        allQuotesFetched: res.length < this.state.quotesPerFetch
+                    });
+                }
+            });
     }
 
     showMoreQuotes() {
-        this.setState({ quotesFetched: this.state.quotesFetched + this.state.quotesPerFetch });
-        fetch(`/quotes?q=${this.props.searchQuery.replace(" ", "+")}&count=${this.state.quotesPerFetch}&offset=${this.state.quotesFetched}`)
-            .then(res => res.json())
-            .then(res => {
-                this.setState({ quotes: res.concat(this.state.quotes) });
-                if (res.length < this.state.quotesPerFetch) {
-                    this.setState({ allQuotesFetched: true });
-                }
-            })
-            .then(() => this.setState({ quotesReady: true }));
+        this.setState({ quotesFetched: this.state.quotesFetched + this.state.quotesPerFetch },
+            () => this.fetchQuotes(true));
     }
 
     updateAuthorFilters(authorFilters) {
-        this.setState({ authorFiltersSelected: authorFilters }, this.fetchQuotes);
+        this.setState({
+            authorFiltersSelected: authorFilters,
+            quotesFetched: 0,
+        },
+            this.fetchQuotes);
     }
 
     updateSourceFilters(sourceFilters) {
-        this.setState({ sourceFiltersSelected: sourceFilters }, this.fetchQuotes);
+        this.setState({
+            sourceFiltersSelected: sourceFilters,
+            quotesFetched: 0,
+        },
+            this.fetchQuotes);
     }
 }
 
