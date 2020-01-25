@@ -57,7 +57,12 @@ class Content extends React.Component {
             this.setState({ quotesReady: false });
         }
         else {
-            this.setState({ quotesFetched: 0, allQuotesFetched: false },
+            this.setState({
+                quotesFetched: 0,
+                allQuotesFetched: false,
+                authorFiltersSelected: null,
+                sourceFiltersSelected: null
+            },
                 () => {
                     this.fetchFilterValues();
                     this.fetchQuotes();

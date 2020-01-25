@@ -5,13 +5,14 @@ class Filter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lastValues : props.values,
-            checkedFilters : []
+            lastValues: props.values,
+            checkedFilters: [],
+            newFilterValues: false,
         };
     }
 
     render() {
-        if(this.props.values.length === 0) {
+        if (this.props.values.length === 0) {
             return "";
         }
         return (
@@ -20,10 +21,13 @@ class Filter extends React.Component {
                     {this.props.display} <br />
                 </div>
                 <div className="filterValues" >
-                    {this.props.values.map((value,i) =>
+                    {this.props.values.map((value, i) =>
                         <div className="filterValue">
-                        <input type="checkbox" name={value} onClick={(e) => this.onCheckboxChange(e)} defaultChecked={true}/> 
-                        <div style={{all:"unset"}} title={value}> {value}  </div>
+                            {this.state.newFilterValues 
+                            ? <input type="checkbox" name={value} checked={true} onClick={(e) => this.onCheckboxChange(e)} defaultChecked={true} />
+                            : <input type="checkbox" name={value} onClick={(e) => this.onCheckboxChange(e)} defaultChecked={true} />
+                            }
+                            <div style={{ all: "unset" }} title={value}> {value}  </div>
                         </div>
                     )}
                 </div>
@@ -33,8 +37,15 @@ class Filter extends React.Component {
 
     componentDidUpdate() {
         //the values changed, so we need to reset the checked filtrer to all values
-        if(!this.arraysEqual(this.state.lastValues,this.props.values)) {
-            this.setState({lastValues: this.props.values, checkedFilters: this.props.values});
+        if (!this.arraysEqual(this.state.lastValues, this.props.values)) {
+            this.setState({
+                lastValues: this.props.values,
+                checkedFilters: this.props.values,
+                newFilterValues: true
+            });
+        }
+        else if(this.state.newFilterValues) {
+            this.setState({ newFilterValues: false });
         }
     }
 
@@ -43,12 +54,12 @@ class Filter extends React.Component {
         const isChecked = e.target.checked;
         if (isChecked) { //add filter as checkFilters
             let newFilters = [...this.state.checkedFilters, filter];
-            this.setState({ checkedFilters: newFilters});
+            this.setState({ checkedFilters: newFilters });
             this.props.onFilterChange(newFilters);
         }
         else { //remove uncheck filter
             let newFilters = this.state.checkedFilters.filter(item => item !== filter);
-            this.setState({ checkedFilters: newFilters});
+            this.setState({ checkedFilters: newFilters });
             this.props.onFilterChange(newFilters);
         }
     }
@@ -59,10 +70,10 @@ class Filter extends React.Component {
         if (a == null || b == null) return false;
         if (a.length !== b.length) return false;
         for (var i = 0; i < a.length; ++i) {
-          if (a[i] !== b[i]) return false;
+            if (a[i] !== b[i]) return false;
         }
         return true;
-      }
+    }
 }
 
 export default Filter;
