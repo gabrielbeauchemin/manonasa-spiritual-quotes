@@ -4,9 +4,19 @@ let dbPath = path.join(appRoot, 'SpiritualQuotes.db');
 const Database = require('better-sqlite3');
 const db = new Database(dbPath, { fileMustExist: true });
 
-let getQuotes = function (authors, sources, searchQueries, nbrQuotes = 15, indexBegin = 0) {
+let getQuotes = function (authors, sources, searchQueries, nbrQuotes, indexBegin) {
   const query = `SELECT * FROM SpiritualQuotesSearch 
-                ${formatWhereClause(searchQueries, { 'author': authors, 'source': sources })}
+                ${formatWhereClause({ 'quote': searchQueries, 'author': authors, 'source': sources })}
+                LIMIT ${nbrQuotes} OFFSET ${indexBegin}`;
+  const stmt = db.prepare(query);
+  const spiritualQuotes = stmt.all();
+  return spiritualQuotes;
+}
+
+let getQuotesRandom = function (authors, sources, searchQueries, nbrQuotes, indexBegin) {
+  const query = `SELECT * FROM SpiritualQuotesSearch 
+                ${formatWhereClause({ 'quote': searchQueries, 'author': authors, 'source': sources })}
+                ORDER BY random()
                 LIMIT ${nbrQuotes} OFFSET ${indexBegin}`;
   const stmt = db.prepare(query);
   const spiritualQuotes = stmt.all();
@@ -15,7 +25,7 @@ let getQuotes = function (authors, sources, searchQueries, nbrQuotes = 15, index
 
 let getAuthors = function (searchQueries) {
   const query = `SELECT DISTINCT author FROM SpiritualQuotesSearch 
-                 WHERE SpiritualQuotesSearch MATCH '${formatFilter('quote', [searchQueries])}'`;
+                 ${formatWhereClause({ 'quote': searchQueries })}`;
   const stmt = db.prepare(query);
   const spiritualQuotes = stmt.all();
   return spiritualQuotes;
@@ -23,23 +33,23 @@ let getAuthors = function (searchQueries) {
 
 let getSources = function (searchQueries) {
   const query = `SELECT DISTINCT source FROM SpiritualQuotesSearch 
-                 WHERE SpiritualQuotesSearch MATCH '${formatFilter('quote', [searchQueries])}'`;
+                ${formatWhereClause({ 'quote': searchQueries })}`;
   const stmt = db.prepare(query);
   const spiritualQuotes = stmt.all();
   return spiritualQuotes;
 }
 
-function formatWhereClause(searchQueries, filtersDict) {
+function formatWhereClause(filtersDict) {
   filtersDict = removeEmptyFilters(filtersDict);
   if (Object.keys(filtersDict).length === 0) {
-    return `WHERE SpiritualQuotesSearch MATCH '${formatFilter('quote', [searchQueries])}'`;
+    return '';
   }
   else {
-    let whereClause = `WHERE SpiritualQuotesSearch MATCH '${formatFilter('quote', [searchQueries])} AND `;
-    let lastFilterName = Object.keys(filtersDict)[Object.keys(filtersDict).length-1];
+    let whereClause = `WHERE SpiritualQuotesSearch MATCH'`;
+    let lastFilterName = Object.keys(filtersDict)[Object.keys(filtersDict).length - 1];
     for (var filterName in filtersDict) {
       whereClause += '(' + formatFilter(filterName, filtersDict[filterName]) + ')';
-      if(filterName != lastFilterName) whereClause += ' AND ';
+      if (filterName != lastFilterName) whereClause += ' AND ';
     }
     return whereClause + "'";
   }
@@ -66,5 +76,6 @@ function formatFilter(filterName, filterValues) {
 }
 
 exports.getQuotes = getQuotes;
+exports.getQuotesRandom = getQuotesRandom;
 exports.getAuthors = getAuthors;
 exports.getSources = getSources;
