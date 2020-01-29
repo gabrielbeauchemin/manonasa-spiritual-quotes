@@ -7,7 +7,9 @@ class Quote extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          searchQuery: "",
+            searchId: this.uuidv4(),
+            searchQuery: "",
+            isRandomSearch: true,
         }
 
         this.updateSearchQuery = this.updateSearchQuery.bind(this)
@@ -15,16 +17,31 @@ class Quote extends React.Component {
 
     render() {
         return (
-                <div>
-                   <Layout updateSearchQuery={this.updateSearchQuery}/> 
-                   <Content searchQuery={this.state.searchQuery}/>
-                </div>
+            <div>
+                <Layout updateSearchQuery={this.updateSearchQuery} />
+                <Content searchId={this.state.searchId}
+                    searchQuery={this.state.searchQuery}
+                    isRandomSearch={this.state.isRandomSearch}
+                />
+            </div>
         )
     }
 
-    updateSearchQuery(searchQuery)
-    {
-        this.setState({ searchQuery: searchQuery });
+    updateSearchQuery(searchQuery, isRandomSearch) {
+        this.setState({
+            searchId: this.uuidv4(),
+            searchQuery: searchQuery,
+            isRandomSearch: isRandomSearch,
+        });
+    }
+
+    //https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+    uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            // eslint-disable-next-line
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
     }
 }
 

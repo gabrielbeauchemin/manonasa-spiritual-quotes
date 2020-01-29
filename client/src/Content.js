@@ -8,8 +8,8 @@ class Content extends React.Component {
         super(props);
         this.state = {
             quotes: [],
+            lastSearchId: "",
             lastSearchQuery: "",
-            quotesReady: true,
             quotesPerFetch: 15,
             quotesFetched: 0,
             allQuotesFetched: false,
@@ -31,7 +31,7 @@ class Content extends React.Component {
                     {this.state.quotes.map((quote, index) =>
                         <Quote quote={quote.quote} author={quote.author} source={quote.source} language={quote.source} chapter={quote.chapter} number={quote.number} />
                     )}
-                    {this.state.quotes.length > 0 &&
+                    {this.state.quotes.length > 0 && !this.props.isRandomSearch &&
                         <button type="button" className="moreQuoteButton" onClick={() => this.showMoreQuotes()} disabled={this.state.allQuotesFetched}>Show more</button>
                     }
                 </div>
@@ -47,18 +47,11 @@ class Content extends React.Component {
         this.actualiseQuotes();
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.searchQuery !== this.props.searchQuery ||
-            nextState.quotesReady;
-    }
-
     actualiseQuotes() {
-        if (this.state.quotesReady) {
-            this.setState({ quotesReady: false });
-        }
-        else {
+        if (this.state.lastSearchId !== this.props.searchId) {
             this.setState({
                 quotesFetched: 0,
+                lastSearchId : this.props.searchId,
                 allQuotesFetched: false,
                 authorFiltersSelected: null,
                 sourceFiltersSelected: null
@@ -90,12 +83,12 @@ class Content extends React.Component {
     fetchQuotes(accumulateQuotes = false) {
         let authorFilter = this.state.authorFiltersSelected == null ? '' : `authors=${this.state.authorFiltersSelected}&`;
         let sourceFilter = this.state.sourceFiltersSelected == null ? '' : `sources=${this.state.sourceFiltersSelected}&`;
-
         fetch(`/quotes?q=${this.props.searchQuery}&` +
             authorFilter +
             sourceFilter +
             `count=${this.state.quotesPerFetch}&` +
-            `offset=${this.state.quotesFetched}`)
+            `offset=${this.state.quotesFetched}&` +
+            `random=${this.props.isRandomSearch}`)
             .then(res => res.json())
             .then(res => {
                 if (accumulateQuotes) {
