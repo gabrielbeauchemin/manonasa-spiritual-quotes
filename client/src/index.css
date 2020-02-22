@@ -1,5 +1,5 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
     height: 100vh;
@@ -34,7 +34,7 @@ body {
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
   top: 100%;
   left: 0;
-  width: 20vh;
+  width: auto;
   color: inherit;
   white-space: nowrap;
   cursor: default;
@@ -80,7 +80,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   height: 80%;
-  width: 4.5%;
+  width: 3.8%;
   margin-right: 6.6em;
   padding-top: 0.4em;
 }
@@ -90,7 +90,7 @@ body {
   display: flex;
   flex-wrap: nowrap;
   width: 70%;
-  padding: 0.6em 0px 1em 0;
+  padding: 0.5em 0px 0.5em 0;
 }
 
 .searchBox input[type=text]{
@@ -116,8 +116,8 @@ body {
   display: flex;
   flex-wrap: nowrap;
   width: 7%;
-  height: 90%;
-  padding: 1.2em 0px 0px 5.5em;
+  height: auto;
+  padding: 1em 0;
 }
 
 .switch {
@@ -149,12 +149,13 @@ body {
 .slider:before {
   position: absolute;
   content: "";
-  height: 94%;
-  width: 50%;
+  height: 90%;
+  width: 40%;
   background: rgb(255,255,255);
   background: radial-gradient(circle, rgba(255,255,255,1) 55%, rgba(0,0,0,1) 100%);
   -webkit-transition: .4s;
   transition: .4s;
+  margin-left: 2px;
 }
 
 input:checked + .slider {
@@ -166,14 +167,14 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
+  -webkit-transform: translateX(130%);
+  -ms-transform: translateX(130%);
+  transform: translateX(130%);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 20px;
 }
 
 .slider.round:before {

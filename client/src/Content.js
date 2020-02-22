@@ -29,7 +29,7 @@ class Content extends React.Component {
                 </div>
                 <div className="quotes">
                     {this.state.quotes.map((quote, index) =>
-                        <Quote quote={quote.quote} author={quote.author} source={quote.source} language={quote.source} chapter={quote.chapter} number={quote.number} />
+                        <Quote quote={quote.quote} author={quote.author} source={quote.source} language={quote.language} chapter={quote.chapter} number={quote.number} />
                     )}
                     {this.state.quotes.length > 0 && !this.props.isRandomSearch &&
                         <button type="button" className="moreQuoteButton" onClick={() => this.showMoreQuotes()} disabled={this.state.allQuotesFetched}>Show more</button>

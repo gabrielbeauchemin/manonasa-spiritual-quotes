@@ -59,7 +59,11 @@ class Quote extends React.Component {
                                         <b>Source:&nbsp;</b> <p>{this.props.source}</p>
                                     </div>
                                     <div className="moreQuoteField">
-                                        <b>Language:&nbsp;</b> <p>{this.props.language}</p>
+                                        <b>Language:&nbsp;</b> <p>
+                                        {this.props.language === 'en' ? 'English' :
+                                         this.props.language === 'fr' ? 'Francais' :
+                                         'Unknown'
+                                        }</p>
                                     </div>
                                     {this.props.chapter !== undefined &&
                                         <div className="moreQuoteField">

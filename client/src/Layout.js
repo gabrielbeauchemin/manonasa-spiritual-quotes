@@ -32,17 +32,17 @@ class Layout extends React.Component {
                     <img src={logo} alt="" height="100%" width="100%" />
                 </div>
                 <form className="searchBox" onSubmit={(e) => { this.props.updateSearchQuery(this.state.searchQuery, this.state.isRandomSearch); e.preventDefault(); }}>
-                    <input autoFocus type="text" alt="" placeholder="Search Spiritual Quotes" name="search" style={{ paddingLeft: "8px" }} value={this.state.searchQuery} onChange={ (e) =>this.setState({searchQuery : e.target.value})} />
-                    <input className="searchIcon" title="search" alt="search" type="image" src={searchIcon} onClick={ () => this.setState({isRandomSearch : false})} />
-                    <input className="searchIcon" title="search randomly" alt="search randomly" type="image" src={searchRandomIcon} onClick={ () => this.setState({isRandomSearch : true})}/>
+                    <input autoFocus type="text" alt="" placeholder="Search Spiritual Quotes" name="search" style={{ paddingLeft: "8px" }} value={this.state.searchQuery} onChange={(e) => this.setState({ searchQuery: e.target.value })} />
+                    <input className="searchIcon" title="search" alt="search" type="image" src={searchIcon} onClick={() => this.setState({ isRandomSearch: false })} />
+                    <input className="searchIcon" title="search randomly" alt="search randomly" type="image" src={searchRandomIcon} onClick={() => this.setState({ isRandomSearch: true })} />
                 </form>
                 <div className="langageToggle">
-                    <span className="langageLabel" style={{ margin: '4px 2px 0px 0px', fontWeight: 'bold', textDecoration: 'underline', cursor: 'pointer' }} onClick={this.langageToggle}> Fr </span >
-                    <label className="switch" onClick={() => { this.langageToggle() }}>
+                    <span className="langageLabel" style={{ margin: '4px 2px 0px 0px', fontWeight: 'bold', textDecoration: 'underline', cursor: 'pointer' }} onClick={this.langageToggle}> En </span >
+                    <label className="switch" onClick={(e) => { this.langageToggle(e) }}>
                         <input type="checkbox" />
                         <span className="slider round" />
                     </label>
-                    <span className="langageLabel" style={{ margin: '4px 0px 0px 2px', fontWeight: 'bold', cursor: 'pointer' }} onClick={this.langageToggle}> En </span >
+                    <span className="langageLabel" style={{ margin: '4px 0px 0px 2px', fontWeight: 'bold', cursor: 'pointer' }} onClick={this.langageToggle}> Fr </span >
                 </div>
             </div>
 
@@ -61,7 +61,6 @@ class Layout extends React.Component {
             menu.style.display = "none";
             menu.style.marginTop = "0em";
         }
-
     }
 
     langageToggle(event) {
@@ -72,8 +71,8 @@ class Layout extends React.Component {
             document.querySelectorAll('.langageToggle .switch input')[0].checked = !currState;
         }
 
-        let fr = document.querySelectorAll('.langageToggle .langageLabel')[0];
-        let en = document.querySelectorAll('.langageToggle .langageLabel')[1];
+        let en = document.querySelectorAll('.langageToggle .langageLabel')[0];
+        let fr = document.querySelectorAll('.langageToggle .langageLabel')[1];
         let isEnlish = document.querySelectorAll('.langageToggle .switch input')[0].checked;
 
         if (isEnlish) {
