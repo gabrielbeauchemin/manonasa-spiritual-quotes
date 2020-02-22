@@ -8,21 +8,16 @@ body {
 /* layout that contain the following elements: menu, searchBox, languageToggle, filters*/
 .layout{
   display: flex;
+  justify-content: space-around;
   flex-wrap: nowrap;
   height: 10%;
-  margin-bottom: 10px;
+  padding: 0.8vh 0;
 }
 
 /* Button Parameters with drop down */
 
 .menu {
-  position: relative;
-  border-radius: 5px;
-  cursor: pointer;
-  height: 100%;
   width: 3.5%;
-  margin-right: 0.8em;
-  margin-top: 1.2em;
 }
 .menu ul {
   position: absolute;
@@ -41,7 +36,6 @@ body {
   background: white;
 }
 .menu ul.hidden {
-  margin-top: 0.7em;
   visibility: hidden;
   opacity: 0;
 }
@@ -90,7 +84,7 @@ body {
   display: flex;
   flex-wrap: nowrap;
   width: 70%;
-  padding: 0.5em 0px 0.5em 0;
+  padding: 0.5em 0;
 }
 
 .searchBox input[type=text]{
