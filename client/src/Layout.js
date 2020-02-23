@@ -20,16 +20,18 @@ class Layout extends React.Component {
     render() {
         return (
             <div className="layout">
-                <div className="menu" onClick={this.menuClick}>
-                    <img src={menuIcon} alt="" height="100%" width="100%" />
-                    <ul style={{ display: 'none' }}>
-                        <li><a href="./"><img src={aboutIcon} alt="" className="menuIcon" />About</a></li>
-                        <li><a href="./"><img src={contactIcon} alt="" className="menuIcon" />Download all quotes</a></li>
-                        <li><a href="./"><img src={downloadIcon} alt="" className="menuIcon" />Contact</a></li>
-                    </ul>
-                </div>
-                <div className="logo" onClick={this.handleClick}>
-                    <img src={logo} alt="" height="100%" width="100%" />
+                <div className="menuAndLogo">
+                    <div className="menu" onClick={this.menuClick}>
+                        <img src={menuIcon} alt="" width="100%" height="100%"/>
+                        <ul style={{ display: 'none' }}>
+                            <li><a href="./"><img src={aboutIcon} alt="" className="menuIcon" />About</a></li>
+                            <li><a href="./"><img src={contactIcon} alt="" className="menuIcon" />Download all quotes</a></li>
+                            <li><a href="./"><img src={downloadIcon} alt="" className="menuIcon" />Contact</a></li>
+                        </ul>
+                    </div>
+                    <div className="logo" onClick={this.handleClick}>
+                        <img src={logo} alt="" width="100%" height="100%"/>
+                    </div>
                 </div>
                 <form className="searchBox" onSubmit={(e) => { this.props.updateSearchQuery(this.state.searchQuery, this.state.isRandomSearch); e.preventDefault(); }}>
                     <input autoFocus type="text" alt="" placeholder="Search Spiritual Quotes" name="search" style={{ paddingLeft: "8px" }} value={this.state.searchQuery} onChange={(e) => this.setState({ searchQuery: e.target.value })} />
@@ -73,15 +75,15 @@ class Layout extends React.Component {
 
         let en = document.querySelectorAll('.langageToggle .langageLabel')[0];
         let fr = document.querySelectorAll('.langageToggle .langageLabel')[1];
-        let isEnlish = document.querySelectorAll('.langageToggle .switch input')[0].checked;
+        let isFrench = document.querySelectorAll('.langageToggle .switch input')[0].checked;
 
-        if (isEnlish) {
-            en.style.textDecoration = "underline";
-            fr.style.textDecoration = "";
-        }
-        else {
+        if (isFrench) {
             fr.style.textDecoration = "underline";
             en.style.textDecoration = "";
+        }
+        else {
+            en.style.textDecoration = "underline";
+            fr.style.textDecoration = "";
         }
     }
 }

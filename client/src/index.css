@@ -8,16 +8,23 @@ body {
 /* layout that contain the following elements: menu, searchBox, languageToggle, filters*/
 .layout{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: nowrap;
-  height: 10%;
-  padding: 0.8vh 0;
+  height: 16vh;
+  padding: 1vh 0 6vh 0;
 }
 
 /* Button Parameters with drop down */
-
+.menuAndLogo {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 12%;
+  height: 100%;
+}
 .menu {
-  width: 3.5%;
+  width: 50%;
+  cursor: pointer;
+  padding-right: 0.5vw;
 }
 .menu ul {
   position: absolute;
@@ -71,24 +78,22 @@ body {
 /* End Button Parameters with drop down */
 
 .logo {
+  width: 50%;
   border-radius: 5px;
   cursor: pointer;
-  height: 80%;
-  width: 3.8%;
-  margin-right: 6.6em;
-  padding-top: 0.4em;
+  margin-right: 4vw;
 }
 
 /* Search box */
 .searchBox {
   display: flex;
   flex-wrap: nowrap;
-  width: 70%;
-  padding: 0.5em 0;
+  width: 50%;
+  height: 100%;
 }
 
 .searchBox input[type=text]{
-  width: 80%;
+  flex: 6;
   border-radius: 4px;
   border-color: black;
   font-size: 1.1em;
@@ -97,8 +102,7 @@ body {
 .searchBox .searchIcon{
   border-radius: 5px;
   cursor: pointer;
-  width: 4%;
-  height: 100%;
+  flex: 1;
   margin-right: 1px;
   margin-left: 1px;
 }
@@ -111,7 +115,6 @@ body {
   flex-wrap: nowrap;
   width: 7%;
   height: auto;
-  padding: 1em 0;
 }
 
 .switch {
