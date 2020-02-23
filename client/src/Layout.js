@@ -35,8 +35,8 @@ class Layout extends React.Component {
                 </div>
                 <form className="searchBox" onSubmit={(e) => { this.props.updateSearchQuery(this.state.searchQuery, this.state.isRandomSearch); e.preventDefault(); }}>
                     <input autoFocus type="text" alt="" placeholder="Search Spiritual Quotes" name="search" style={{ paddingLeft: "8px" }} value={this.state.searchQuery} onChange={(e) => this.setState({ searchQuery: e.target.value })} />
-                    <input className="searchIcon" title="search" alt="search" type="image" src={searchIcon} onClick={() => this.setState({ isRandomSearch: false })} />
-                    <input className="searchIcon" title="search randomly" alt="search randomly" type="image" src={searchRandomIcon} onClick={() => this.setState({ isRandomSearch: true })} />
+                    <input className="searchIcon" title="search" alt="search" type="image" src={searchIcon} width="100%" height="100%" onClick={() => this.setState({ isRandomSearch: false })} />
+                    <input className="searchIcon" title="search randomly" alt="search randomly" type="image" width="100%" height="100%" src={searchRandomIcon} onClick={() => this.setState({ isRandomSearch: true })} />
                 </form>
                 <div className="langageToggle">
                     <span className="langageLabel" style={{ margin: '4px 2px 0px 0px', fontWeight: 'bold', textDecoration: 'underline', cursor: 'pointer' }} onClick={this.langageToggle}> En </span >
