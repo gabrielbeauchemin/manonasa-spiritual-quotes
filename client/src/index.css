@@ -10,8 +10,8 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
-  height: 10vh;
-  padding: 1vh 0 6vh 0;
+  height: 8vh;
+  padding: 1vh 0 4vh 0;
 }
 
 /* Button Parameters with drop down */
@@ -116,7 +116,7 @@ body {
   flex-wrap: nowrap;
   width: 7%;
   height: auto;
-  padding: 3vh 0;
+  padding: 0.8% 0;
 }
 
 .switch {
