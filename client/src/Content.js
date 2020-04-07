@@ -69,14 +69,14 @@ class Content extends React.Component {
             .then(res => {
                 let authors = [];
                 res.forEach(x => authors.push(x.author));
-                this.setState({ authorFilters: authors })
+                this.setState({ authorFilters: authors });
             });
         fetch(`/sources?q=${this.props.searchQuery}`)
             .then(res => res.json())
             .then(res => {
                 let sources = [];
                 res.forEach(x => sources.push(x.source));
-                this.setState({ sourceFilters: sources })
+                this.setState({ sourceFilters: sources });
             });
     }
 
