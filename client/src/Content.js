@@ -9,7 +9,6 @@ class Content extends React.Component {
         this.state = {
             quotes: [],
             lastSearchId: "",
-            lastSearchQuery: "",
             quotesPerFetch: 15,
             quotesFetched: 0,
             allQuotesFetched: false,
@@ -29,7 +28,7 @@ class Content extends React.Component {
                 </div>
                 <div className="quotes">
                     {this.state.quotes.map((quote, index) =>
-                        <Quote quote={quote.quote} author={quote.author} source={quote.source} language={quote.language} chapter={quote.chapter} number={quote.number} />
+                        <Quote quote={quote.quote} author={quote.author} source={quote.source} language={quote.language} chapter={quote.chapter} number={quote.number} key={index} />
                     )}
                     {this.state.quotes.length > 0 && !this.props.isRandomSearch &&
                         <button type="button" className="moreQuoteButton" onClick={() => this.showMoreQuotes()} disabled={this.state.allQuotesFetched}>Show more</button>
@@ -43,24 +42,24 @@ class Content extends React.Component {
         this.actualiseQuotes();
     }
 
-    componentDidUpdate() {
-        this.actualiseQuotes();
+    componentDidUpdate(pastProps, pastState) {
+        if (pastProps.searchId !== this.props.searchId) {
+            this.actualiseQuotes();
+        }
     }
 
     actualiseQuotes() {
-        if (this.state.lastSearchId !== this.props.searchId) {
-            this.setState({
-                quotesFetched: 0,
-                lastSearchId : this.props.searchId,
-                allQuotesFetched: false,
-                authorFiltersSelected: null,
-                sourceFiltersSelected: null
-            },
-                () => {
-                    this.fetchFilterValues();
-                    this.fetchQuotes();
-                });
-        }
+        this.setState({
+            quotesFetched: 0,
+            lastSearchId: this.props.searchId,
+            allQuotesFetched: false,
+            authorFiltersSelected: this.props.isRandomSearch ? this.state.authorFiltersSelected : null,
+            sourceFiltersSelected: this.props.isRandomSearch ? this.state.sourceFiltersSelected : null
+        },
+            () => {
+                this.fetchFilterValues();
+                this.fetchQuotes();
+            });
     }
 
     fetchFilterValues() {

@@ -10,7 +10,7 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
-  height: 8vh;
+  height: 40px;
   padding: 1vh 0 4vh 0;
 }
 

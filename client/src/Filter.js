@@ -5,9 +5,7 @@ class Filter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lastValues: props.values,
-            checkedFilters: [],
-            newFilterValues: false,
+            filters: this.initializeFilters(this.props.values), //filterName => isChecked
         };
     }
 
@@ -21,13 +19,10 @@ class Filter extends React.Component {
                     {this.props.display} <br />
                 </div>
                 <div className="filterValues" >
-                    {this.props.values.map((value, i) =>
+                    {Object.keys(this.state.filters).map((filterName, i) =>
                         <div className="filterValue">
-                            {this.state.newFilterValues 
-                            ? <input type="checkbox" name={value} checked={true} onClick={(e) => this.onCheckboxChange(e)} defaultChecked={true} />
-                            : <input type="checkbox" name={value} onClick={(e) => this.onCheckboxChange(e)} defaultChecked={true} />
-                            }
-                            <div style={{ all: "unset" }} title={value}> {value}  </div>
+                            <input type="checkbox" name={filterName} checked={this.state.filters[filterName]} onClick={(e) => this.onCheckboxChange(e)} defaultChecked={true} />
+                            <div style={{ all: "unset" }} title={filterName}> {filterName}  </div>
                         </div>
                     )}
                 </div>
@@ -35,33 +30,38 @@ class Filter extends React.Component {
         );
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(pastProps, pastState) {
         //the values changed, so we need to reset the checked filtrer to all values
-        if (!this.arraysEqual(this.state.lastValues, this.props.values)) {
+        if (!this.arraysEqual(pastProps.values, this.props.values)) {
             this.setState({
-                lastValues: this.props.values,
-                checkedFilters: this.props.values,
-                newFilterValues: true
+                filters: this.initializeFilters(this.props.values),
             });
-        }
-        else if(this.state.newFilterValues) {
-            this.setState({ newFilterValues: false });
         }
     }
 
+    initializeFilters(filters) {
+        let filtersDict = {};
+        filters.forEach(element => {
+            filtersDict[element] = true; //by default, all filters are checked
+        });
+        return filtersDict;
+    }
+
     onCheckboxChange(e) {
-        const filter = e.target.name;
+        const filterName = e.target.name;
         const isChecked = e.target.checked;
-        if (isChecked) { //add filter as checkFilters
-            let newFilters = [...this.state.checkedFilters, filter];
-            this.setState({ checkedFilters: newFilters });
-            this.props.onFilterChange(newFilters);
-        }
-        else { //remove uncheck filter
-            let newFilters = this.state.checkedFilters.filter(item => item !== filter);
-            this.setState({ checkedFilters: newFilters });
-            this.props.onFilterChange(newFilters);
-        }
+        let newFilters = JSON.parse(JSON.stringify(this.state.filters));
+        newFilters[filterName] = isChecked;
+        this.setState({ filters: newFilters });
+        this.props.onFilterChange(this.getCheckedFiltersName(newFilters));
+    }
+
+    getCheckedFiltersName(filters) {
+        var checkedFilters = Object.keys(filters).reduce((p, c) => {
+            if (filters[c]) p[c] = filters[c];
+            return p;
+        }, {});
+        return Object.getOwnPropertyNames(checkedFilters);
     }
 
     //https://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript

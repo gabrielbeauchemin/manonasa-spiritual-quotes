@@ -77,11 +77,4 @@ class Layout extends React.Component {
     }
 }
 
-const selectStyle = {
-    option: (provided, state) => ({
-        ...provided,
-        color: 'red',
-    }),
-}
-
 export default Layout;
