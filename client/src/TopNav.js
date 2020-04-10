@@ -26,17 +26,17 @@ class TopNav extends React.Component {
         return (
             <div className="topNav">
                 <div className="menuAndLogo">
-                    <div className="menu" onClick={this.menuClick}>
+                    <div className="menu" onClick={this.menuClick} tabindex="1" onBlur={this.menuBlur}>
                         <img src={menuIcon} alt="" width="100%" height="100%" />
-                        <ul style={{ display: 'none' }}>
-                            <li><a href="./"><div style={{display: "flex"}}><img src={aboutIcon} alt="" className="menuIcon" />About</div></a></li>
-                            <li><a href="./"><div style={{display: "flex"}}><img src={contactIcon} alt="" className="menuIcon" />Download all quotes</div></a></li>
-                            <li><a href="./"><div style={{display: "flex"}}><img src={downloadIcon} alt="" className="menuIcon" />Contact</div></a></li>
+                        <ul style={{ display: 'none' }} >
+                            <li><a href="./"><div style={{ display: "flex" }}><img src={aboutIcon} alt="" className="menuIcon" />About</div></a></li>
+                            <li><a href="./"><div style={{ display: "flex" }}><img src={contactIcon} alt="" className="menuIcon" />Download all quotes</div></a></li>
+                            <li><a href="./"><div style={{ display: "flex" }}><img src={downloadIcon} alt="" className="menuIcon" />Contact</div></a></li>
                         </ul>
                     </div>
                     <div className="logo">
                         <a href="/">
-                            <img src={logo} alt="" width="100%" height="100%"/>
+                            <img src={logo} alt="" width="100%" height="100%" />
                         </a>
                     </div>
                 </div>
@@ -78,6 +78,14 @@ class TopNav extends React.Component {
             menu.style.display = "none";
             menu.style.marginTop = "0em";
         }
+    }
+
+    menuBlur() {
+        let menu = document.querySelectorAll('.menu ul')[0];
+        menu.style.display = "none";
+        menu.style.marginTop = "0em";
+        document.activeElement.blur();
+        
     }
 }
 
