@@ -116,6 +116,7 @@ body {
 .content{
   display: flex;
   flex-wrap: nowrap;
+  padding-top: 18px;
 }
 
 .filters{
