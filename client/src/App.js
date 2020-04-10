@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from './Layout'
+import TopNav from './TopNav'
 import Content from './Content'
 
 class Quote extends React.Component {
@@ -18,7 +18,7 @@ class Quote extends React.Component {
     render() {
         return (
             <div>
-                <Layout updateSearchQuery={this.updateSearchQuery} />
+                <TopNav updateSearchQuery={this.updateSearchQuery} />
                 <Content searchId={this.state.searchId}
                     searchQuery={this.state.searchQuery}
                     isRandomSearch={this.state.isRandomSearch}
