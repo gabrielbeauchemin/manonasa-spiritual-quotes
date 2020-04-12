@@ -5,13 +5,52 @@ body {
     height: 100vh;
 }
 
+@media screen and (min-width: 2000px) {
+  body {
+    font-size: 2em;
+  }
+}
+
+@media screen and (max-width: 2000px) {
+  body {
+    font-size: 0.7em;
+  }
+}
+
+
 /* layout that contain the following elements: menu, searchBox, languageToggle, filters*/
-.topNav{
+.topNavLaptop{
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
   height: 40px;
   padding: 1vh 0 4vh 0;
+}
+
+.topNavBigScreen{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  height: 80px;
+  padding: 1vh 0 4vh 0;
+}
+
+.topNavMobile{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  height: 30px;
+  padding: 1vh 0 4vh 0;
+}
+
+.topNavMobileSearchActivated{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  height: 30px;
+  padding: 1vh 0 4vh 0;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Button Parameters with drop down */
@@ -21,6 +60,13 @@ body {
   width: 8.5%;
   height: 100%;
 }
+.menuAndLogoMobile {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 15%;
+  height: 100%;
+}
+
 .menu {
   width: 50%;
   cursor: pointer;
@@ -90,6 +136,13 @@ body {
   height: 100%;
 }
 
+.searchBoxMobile {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 55%;
+  height: 100%;
+}
+
 .searchBox input[type=text]{
   flex: 13;
   border-radius: 4px;
@@ -97,7 +150,14 @@ body {
   font-size: 1.1em;
 }
 
-.searchBox .searchIcon{
+.searchBoxMobile input[type=text]{
+  flex: 10;
+  border-radius: 4px;
+  border-color: black;
+  font-size: 1.1em;
+}
+
+.searchIcon{
   min-width: 0;
   border-radius: 5px;
   cursor: pointer;
@@ -106,8 +166,20 @@ body {
   margin-left: 1px;
 }
 
+.searchBoxToggle{
+  width: 7%;
+}
+
+.desactivateSearchIcon{
+  width: 5%;
+  padding: 1vh 0 4vh 0;
+}
+
 .languagesSelector{
-  width: 85px;
+  width: 70px;
+}
+.languagesSelectorBigScreen{
+  width: 170px;
 }
 /* End Search box */
 /* End Layout */
@@ -116,7 +188,7 @@ body {
 .content{
   display: flex;
   flex-wrap: nowrap;
-  padding-top: 18px;
+  padding-top: 11px;
 }
 
 .filters{
