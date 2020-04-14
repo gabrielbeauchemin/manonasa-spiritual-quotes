@@ -190,12 +190,32 @@ body {
   flex-wrap: nowrap;
   padding-top: 11px;
 }
+.contentMobile{
+  display: flex;
+  flex-wrap: nowrap;
+  padding-top: 11px;
+  flex-direction: column;
+}
 
 .filters{
   width: 18%;
   margin-right: 10px;
   margin-left: -30px;
 }
+.filtersMobile{
+  width: 100%;
+  display: flex;
+}
+
+.toggleFiltersMobile{
+  width: 4%;
+}
+
+.desactivateFiltersMobile{
+  width: 5%;
+  padding: 1vh 0 4vh 0;
+}
+
 .filter{
   width: auto;
 }
