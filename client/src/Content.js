@@ -18,7 +18,8 @@ class Content extends React.Component {
             authorFilters: [],
             authorFiltersSelected: null,
             sourceFilters: [],
-            sourceFiltersSelected: null
+            sourceFiltersSelected: null,
+            contentMobileActivated: false
         };
     }
 
@@ -42,15 +43,23 @@ class Content extends React.Component {
                     </div>
                 </MediaQuery>
                 <MediaQuery maxDeviceWidth={600}>
-                    <div style={{display: "flex"}}> 
-                        <b>Filters</b>
-                        <img className="toggleFiltersMobile" title="search" alt="search" type="image" src={plusIcon} width="100%" height="100%" onClick={() => this.setState({ searchBoxActivated: !this.state.searchBoxActivated })} />
-                    </div> 
+                    {!this.state.contentMobileActivated &&
+                        <div className="filtersLabelMobile">
+                            <b>Filters</b>
+                            <img className="toggleFiltersMobile" title="search" alt="search" type="image" src={plusIcon} width="100%" height="100%" onClick={() => this.setState({ contentMobileActivated: !this.state.contentMobileActivated })} />
+                        </div>
+                    }
                     <div className="contentMobile">
                         <div className="filtersMobile">
-                        <img className="desactivateFiltersMobile" title="search" alt="search" type="image" src={backIcon} width="100%" height="100%" onClick={() => this.setState({ searchBoxActivated: !this.state.searchBoxActivated })} />
-                            <Filter display="Author" values={this.state.authorFilters} onFilterChange={(authorFilters) => this.updateAuthorFilters(authorFilters)} />
-                            <Filter display="Book" values={this.state.sourceFilters} onFilterChange={(sourceFilters) => this.updateSourceFilters(sourceFilters)} />
+                            {this.state.contentMobileActivated &&
+                                <input className="desactivateFiltersMobile" title="search" alt="search" type="image" src={backIcon} width="100%" height="100%" onClick={() => this.setState({ contentMobileActivated: !this.state.contentMobileActivated })} />
+                            }
+                            {this.state.contentMobileActivated &&
+                                <>
+                                    <Filter display="Author" values={this.state.authorFilters} onFilterChange={(authorFilters) => this.updateAuthorFilters(authorFilters)} />
+                                    <Filter display="Book" values={this.state.sourceFilters} onFilterChange={(sourceFilters) => this.updateSourceFilters(sourceFilters)} />
+                                </>
+                            }
                         </div>
                         <div className="quotes">
                             {this.state.quotes.map((quote, index) =>
@@ -62,7 +71,6 @@ class Content extends React.Component {
                         </div>
                     </div>
                 </MediaQuery>
-
             </div>
 
         );

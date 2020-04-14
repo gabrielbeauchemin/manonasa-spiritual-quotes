@@ -40,7 +40,7 @@ body {
   justify-content: space-between;
   flex-wrap: nowrap;
   height: 30px;
-  padding: 1vh 0 4vh 0;
+  padding: 1vh 0 1vh 0;
 }
 
 .topNavMobileSearchActivated{
@@ -208,12 +208,20 @@ body {
 }
 
 .toggleFiltersMobile{
-  width: 4%;
+  width: 3.5%;
+  margin-left: 5px;
+  cursor: pointer;
+
 }
 
 .desactivateFiltersMobile{
   width: 5%;
   padding: 1vh 0 4vh 0;
+}
+
+.filtersLabelMobile{
+  display: flex;
+  padding: 8px 0;
 }
 
 .filter{
