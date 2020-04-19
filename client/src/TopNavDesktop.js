@@ -8,7 +8,7 @@ import searchIcon from './icons/search.svg';
 import searchRandomIcon from './icons/searchRandom.svg';
 import Select from 'react-select';
 
-class TopNavLaptop extends React.Component {
+class TopNavDesktop extends React.Component {
 
     constructor(props) {
         super(props);
@@ -88,4 +88,4 @@ class TopNavLaptop extends React.Component {
     }
 }
 
-export default TopNavLaptop;
+export default TopNavDesktop;

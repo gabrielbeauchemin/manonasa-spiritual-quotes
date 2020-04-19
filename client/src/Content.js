@@ -1,9 +1,7 @@
 import React from 'react';
-import Filter from "./Filter"
-import Quote from './Quote';
+import ContentMobile from './ContentMobile';
+import ContentDesktop from './ContentDesktop';
 import MediaQuery from 'react-responsive'
-import backIcon from './icons/back.svg';
-import plusIcon from './icons/plus.svg';
 
 class Content extends React.Component {
 
@@ -18,8 +16,7 @@ class Content extends React.Component {
             authorFilters: [],
             authorFiltersSelected: null,
             sourceFilters: [],
-            sourceFiltersSelected: null,
-            contentMobileActivated: false
+            sourceFiltersSelected: null
         };
     }
 
@@ -27,49 +24,28 @@ class Content extends React.Component {
         return (
             <div>
                 <MediaQuery minDeviceWidth={601}>
-                    <div className="content">
-                        <div className="filters">
-                            <Filter display="Author" values={this.state.authorFilters} onFilterChange={(authorFilters) => this.updateAuthorFilters(authorFilters)} />
-                            <Filter display="Book" values={this.state.sourceFilters} onFilterChange={(sourceFilters) => this.updateSourceFilters(sourceFilters)} />
-                        </div>
-                        <div className="quotes">
-                            {this.state.quotes.map((quote, index) =>
-                                <Quote quote={quote.quote} author={quote.author} source={quote.source} language={quote.language} chapter={quote.chapter} number={quote.number} key={index} />
-                            )}
-                            {this.state.quotes.length > 0 && !this.props.isRandomSearch &&
-                                <button type="button" className="moreQuoteButton" onClick={() => this.showMoreQuotes()} disabled={this.state.allQuotesFetched}>Show more</button>
-                            }
-                        </div>
-                    </div>
+                    <ContentDesktop
+                        quotes={this.state.quotes}
+                        isRandomSearch={this.props.isRandomSearch}
+                        authorFilters={this.state.authorFilters}
+                        sourceFilters={this.state.sourceFilters}
+                        allQuotesFetched={this.state.allQuotesFetched}
+                        updateAuthorFilters={(authorFilters) => this.updateAuthorFilters(authorFilters)}
+                        updateSourceFilters={(sourceFilters) => this.updateSourceFilters(sourceFilters)}
+                        showMoreQuotes={() => this.showMoreQuotes}
+                    />
                 </MediaQuery>
                 <MediaQuery maxDeviceWidth={600}>
-                    {!this.state.contentMobileActivated &&
-                        <div className="filtersLabelMobile">
-                            <b>Filters</b>
-                            <img className="toggleFiltersMobile" title="search" alt="search" type="image" src={plusIcon} width="100%" height="100%" onClick={() => this.setState({ contentMobileActivated: !this.state.contentMobileActivated })} />
-                        </div>
-                    }
-                    <div className="contentMobile">
-                        <div className="filtersMobile">
-                            {this.state.contentMobileActivated &&
-                                <input className="desactivateFiltersMobile" title="search" alt="search" type="image" src={backIcon} width="100%" height="100%" onClick={() => this.setState({ contentMobileActivated: !this.state.contentMobileActivated })} />
-                            }
-                            {this.state.contentMobileActivated &&
-                                <>
-                                    <Filter display="Author" values={this.state.authorFilters} onFilterChange={(authorFilters) => this.updateAuthorFilters(authorFilters)} />
-                                    <Filter display="Book" values={this.state.sourceFilters} onFilterChange={(sourceFilters) => this.updateSourceFilters(sourceFilters)} />
-                                </>
-                            }
-                        </div>
-                        <div className="quotes">
-                            {this.state.quotes.map((quote, index) =>
-                                <Quote quote={quote.quote} author={quote.author} source={quote.source} language={quote.language} chapter={quote.chapter} number={quote.number} key={index} />
-                            )}
-                            {this.state.quotes.length > 0 && !this.props.isRandomSearch &&
-                                <button type="button" className="moreQuoteButton" onClick={() => this.showMoreQuotes()} disabled={this.state.allQuotesFetched}>Show more</button>
-                            }
-                        </div>
-                    </div>
+                    <ContentMobile
+                        quotes={this.state.quotes}
+                        isRandomSearch={this.props.isRandomSearch}
+                        authorFilters={this.state.authorFilters}
+                        sourceFilters={this.state.sourceFilters}
+                        allQuotesFetched={this.state.allQuotesFetched}
+                        updateAuthorFilters={(authorFilters) => this.updateAuthorFilters(authorFilters)}
+                        updateSourceFilters={(sourceFilters) => this.updateSourceFilters(sourceFilters)}
+                        showMoreQuotes={() => this.showMoreQuotes}
+                    />
                 </MediaQuery>
             </div>
 

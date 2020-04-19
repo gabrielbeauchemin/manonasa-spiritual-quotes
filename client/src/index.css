@@ -221,7 +221,7 @@ body {
 
 .filtersLabelMobile{
   display: flex;
-  padding: 8px 0;
+  padding: 16px 0 10px 0;
 }
 
 .filter{
