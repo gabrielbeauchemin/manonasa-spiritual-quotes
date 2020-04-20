@@ -121,6 +121,61 @@ body {
   padding-right: 30px;
   margin-left: -2.4em;
 }
+
+.menuMobile {
+  width: 50%;
+  cursor: pointer;
+  padding-right: 0.5vw;
+}
+.menuMobile ul {
+  position: absolute;
+  background: inherit;
+  margin: 0;
+  margin-top: 0em;
+  transition: margin-top 0.7s;  
+  border-radius: 5px;
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+  left: 0;
+  width: 25%;
+  color: inherit;
+  white-space: nowrap;
+  cursor: default;
+  background: white;
+}
+.menuMobile ul.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+.menuMobile ul:before {
+  content: '';
+  width: 0.75em;
+  height: 0.75em;
+  background: inherit;
+  position: absolute;
+  top: -0.375em;
+  left: calc(56px / 2 - .375em);
+  transform: rotate(45deg);
+  border-radius: 5px;
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+  border-style: solid;
+  border-color: rgba(0, 0, 0, .2);
+  border-width: 1px;
+  z-index: -1;
+}
+.menuMobile .menuIcon{
+  height: 17%;
+  width: 17%;
+  margin-right: 5px;
+}
+.menuMobile li {
+  list-style: none;
+  padding: 0.5em;
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+  padding-right: 30px;
+  margin-left: -2.4em;
+}
 /* End Button Parameters with drop down */
 
 .logo {
@@ -158,7 +213,7 @@ body {
 }
 
 .searchIcon{
-  min-width: 0;
+  min-width: 20px;
   border-radius: 5px;
   cursor: pointer;
   flex: 1;
@@ -256,14 +311,25 @@ body {
   font-size: 1.15em;
 
 }
+
 .quoteButton{
-  width: 4%;
+  width: 5%;
   border-radius: 3px;
   align-self: center;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
 }
+
+.quoteButtonMobile{
+  width: 10%;
+  border-radius: 3px;
+  align-self: center;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
 .quoteIcon{
   max-width: "100%";
   max-height:"100%";
@@ -271,7 +337,6 @@ body {
   width: auto;
 }
 .moreQuoteButton{
-  width: 10%;
   border-radius: 3px;
   align-self: center;
   margin-bottom: 20px;

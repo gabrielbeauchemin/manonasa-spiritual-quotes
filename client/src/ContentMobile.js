@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import Filter from "./Filter"
-import Quote from './Quote';
+import QuoteMobile from './QuoteMobile';
 import backIcon from './icons/back.svg';
 import plusIcon from './icons/plus.svg';
 
 const ContentMobile = (props) => {
     const [contentMobileActivated, setContentMobileActivated] = useState(false);
+    const disableFilters = () => {
+        props.updateAuthorFilters(props.authorFilters);
+        props.updateSourceFilters(props.sourceFilters);
+        setContentMobileActivated(false);
+    };
     return (
         <div>
             {!contentMobileActivated &&
                 <div className="filtersLabelMobile">
                     <b>Filters</b>
-                    <img className="toggleFiltersMobile" title="search" alt="search" type="image" src={plusIcon} width="100%" height="100%" onClick={() => setContentMobileActivated((prev) => !prev)} />
+                    <img className="toggleFiltersMobile" title="search" alt="search" type="image" src={plusIcon} width="100%" height="100%" onClick={() => setContentMobileActivated(true)} />
                 </div>
             }
             <div className="contentMobile">
                 <div className="filtersMobile">
                     {contentMobileActivated &&
-                        <input className="desactivateFiltersMobile" title="search" alt="search" type="image" src={backIcon} width="100%" height="100%" onClick={() => setContentMobileActivated((prev) => !prev)} />
+                        <input className="desactivateFiltersMobile" title="search" alt="search" type="image" src={backIcon} width="100%" height="100%" onClick={() => disableFilters()} />
                     }
                     {contentMobileActivated &&
                         <>
@@ -28,7 +33,7 @@ const ContentMobile = (props) => {
                 </div>
                 <div className="quotes">
                     {props.quotes.map((quote, index) =>
-                        <Quote quote={quote.quote} author={quote.author} source={quote.source} language={quote.language} chapter={quote.chapter} number={quote.number} key={index} />
+                        <QuoteMobile quote={quote.quote} author={quote.author} source={quote.source} language={quote.language} chapter={quote.chapter} number={quote.number} key={index} />
                     )}
                     {props.quotes.length > 0 && !props.isRandomSearch &&
                         <button type="button" className="moreQuoteButton" onClick={() => props.showMoreQuotes()} disabled={props.allQuotesFetched}>Show more</button>
@@ -38,5 +43,6 @@ const ContentMobile = (props) => {
         </div>
     );
 }
+
 
 export default ContentMobile;

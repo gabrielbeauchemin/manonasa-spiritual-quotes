@@ -32,7 +32,7 @@ class Content extends React.Component {
                         allQuotesFetched={this.state.allQuotesFetched}
                         updateAuthorFilters={(authorFilters) => this.updateAuthorFilters(authorFilters)}
                         updateSourceFilters={(sourceFilters) => this.updateSourceFilters(sourceFilters)}
-                        showMoreQuotes={() => this.showMoreQuotes}
+                        showMoreQuotes={() => this.showMoreQuotes()}
                     />
                 </MediaQuery>
                 <MediaQuery maxDeviceWidth={600}>
@@ -44,7 +44,7 @@ class Content extends React.Component {
                         allQuotesFetched={this.state.allQuotesFetched}
                         updateAuthorFilters={(authorFilters) => this.updateAuthorFilters(authorFilters)}
                         updateSourceFilters={(sourceFilters) => this.updateSourceFilters(sourceFilters)}
-                        showMoreQuotes={() => this.showMoreQuotes}
+                        showMoreQuotes={() => this.showMoreQuotes()}
                     />
                 </MediaQuery>
             </div>

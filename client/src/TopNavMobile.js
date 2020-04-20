@@ -43,7 +43,7 @@ class TopNavMobile extends React.Component {
             return (
                 <div className="topNavMobile">
                     <div className="menuAndLogoMobile">
-                        <div className="menu" onClick={this.menuClick} tabindex="1" onBlur={this.menuBlur}>
+                        <div className="menuMobile" onClick={this.menuClick} tabIndex="1" onBlur={this.menuBlur}>
                             <img src={menuIcon} alt="" width="100%" height="100%" />
                             <ul style={{ display: 'none' }} >
                                 <li><a href="./"><div style={{ display: "flex" }}><img src={aboutIcon} alt="" className="menuIcon" />About</div></a></li>
@@ -90,7 +90,7 @@ class TopNavMobile extends React.Component {
     }
 
     menuClick() {
-        let menu = document.querySelectorAll('.menu ul')[0];
+        let menu = document.querySelectorAll('.menuMobile ul')[0];
         //toggle menu apparence
         if (menu.style.display === "none") {
             menu.style.display = "block";
@@ -104,7 +104,7 @@ class TopNavMobile extends React.Component {
     }
 
     menuBlur() {
-        let menu = document.querySelectorAll('.menu ul')[0];
+        let menu = document.querySelectorAll('.menuMobile ul')[0];
         menu.style.display = "none";
         menu.style.marginTop = "0em";
         document.activeElement.blur();

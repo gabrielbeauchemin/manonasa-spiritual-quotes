@@ -20,8 +20,8 @@ class Filter extends React.Component {
                 </div>
                 <div className="filterValues" >
                     {Object.keys(this.state.filters).map((filterName, i) =>
-                        <div className="filterValue">
-                            <input type="checkbox" name={filterName} checked={this.state.filters[filterName]} onClick={(e) => this.onCheckboxChange(e)} defaultChecked={true} />
+                        <div className="filterValue" key={i}>
+                            <input type="checkbox" name={filterName} checked={this.state.filters[filterName]} onChange={(e) => this.onCheckboxChange(e)} />
                             <div style={{ all: "unset" }} title={filterName}> {filterName}  </div>
                         </div>
                     )}
