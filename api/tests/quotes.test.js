@@ -242,3 +242,31 @@ describe('GET /quotes? complete with all possible parameters', () => {
     })
 });
 
+describe('GET /quotes?q=love%20devotion (search multiple keywords)', () => {
+    it('should return less quotes than search with only one keyword', async () => {
+        let nbrQuotesMultipleKeywords;
+        await request(app)
+            .get('/quotes')
+            .query({ q: 'love devotion'})
+            .then(res => {
+                expect(res.status).toBe(200);
+                expect(Array.isArray(res.body)).toBe(true);
+                expect(res.body.length).toBeGreaterThan(0);
+                nbrQuotesMultipleKeywords = res.body.length;
+            });
+
+        let nbrQuotesOneKeyword;
+        await request(app)
+            .get('/quotes')
+            .query({ q: 'love'})
+            .then(res2 => {
+                expect(res2.status).toBe(200);
+                expect(Array.isArray(res2.body)).toBe(true);
+                expect(res2.body.length).toBeGreaterThan(0);
+                nbrQuotesOneKeyword = res2.body.length;
+            });
+
+        expect(nbrQuotesOneKeyword).toBeGreaterThan(nbrQuotesMultipleKeywords);
+    })
+});
+

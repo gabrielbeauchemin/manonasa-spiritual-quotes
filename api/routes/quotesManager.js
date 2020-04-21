@@ -69,7 +69,7 @@ function formatFilter(filterName, filterValues) {
   for (i = 0; i < filterValues.length; i++) {
     format += filterName + ':' + filterValues[i].split(" ").join("+");
     if (i < filterValues.length - 1) {
-      format += ' OR ';
+      format += filterName === 'quote' ? ' AND ' : ' OR ';
     }
   }
   return format;
