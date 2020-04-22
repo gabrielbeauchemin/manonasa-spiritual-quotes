@@ -1,12 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
-import menuIcon from './icons/hamburgerMenu.svg';
-import aboutIcon from './icons/about.svg';
-import contactIcon from './icons/contact.svg';
-import downloadIcon from './icons/download.svg';
 import searchIcon from './icons/search.svg';
 import searchRandomIcon from './icons/searchRandom.svg';
 import Select from 'react-select';
+import TopNavMenu from './TopNavMenu'
 
 class TopNavBigScreen extends React.Component {
 
@@ -26,14 +23,7 @@ class TopNavBigScreen extends React.Component {
         return (
             <div className="topNavBigScreen">
                 <div className="menuAndLogo">
-                    <div className="menu" onClick={this.menuClick} tabindex="1" onBlur={this.menuBlur}>
-                        <img src={menuIcon} alt="" width="100%" height="100%" />
-                        <ul style={{ display: 'none' }} >
-                            <li><a href="./"><div style={{ display: "flex" }}><img src={aboutIcon} alt="" className="menuIcon" />About</div></a></li>
-                            <li><a href="./"><div style={{ display: "flex" }}><img src={contactIcon} alt="" className="menuIcon" />Download all quotes</div></a></li>
-                            <li><a href="./"><div style={{ display: "flex" }}><img src={downloadIcon} alt="" className="menuIcon" />Contact</div></a></li>
-                        </ul>
-                    </div>
+                    <TopNavMenu/>
                     <div className="logo">
                         <a href="/">
                             <img src={logo} alt="" width="100%" height="100%" />
@@ -70,28 +60,6 @@ class TopNavBigScreen extends React.Component {
                 </div>
             </div>
         );
-    }
-
-    menuClick() {
-        let menu = document.querySelectorAll('.menu ul')[0];
-        //toggle menu apparence
-        if (menu.style.display === "none") {
-            menu.style.display = "block";
-            //begin animation
-            menu.style.marginTop = "0.5em";
-        }
-        else {
-            menu.style.display = "none";
-            menu.style.marginTop = "0em";
-        }
-    }
-
-    menuBlur() {
-        let menu = document.querySelectorAll('.menu ul')[0];
-        menu.style.display = "none";
-        menu.style.marginTop = "0em";
-        document.activeElement.blur();
-
     }
 }
 

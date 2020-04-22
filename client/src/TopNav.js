@@ -7,7 +7,7 @@ import { useMediaQuery } from 'react-responsive'
 const TopNav = (props) => {
     const isBigScreen = useMediaQuery({ query: '(min-device-width: 1824px)' });
     const isDesktopOrTablet = useMediaQuery({
-        query: '(min-device-width: 700px)'
+        query: '(min-device-width: 600px)'
     })
 
     if (isBigScreen) {
