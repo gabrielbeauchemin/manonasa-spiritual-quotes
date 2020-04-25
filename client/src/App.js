@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
 import TopNav from './TopNav'
 import Content from './Content'
 
@@ -17,13 +22,35 @@ class Quote extends React.Component {
 
     render() {
         return (
-            <div>
-                <TopNav updateSearchQuery={this.updateSearchQuery} />
-                <Content searchId={this.state.searchId}
-                    searchQuery={this.state.searchQuery}
-                    isRandomSearch={this.state.isRandomSearch}
-                />
-            </div>
+            <Router>
+                <Switch>
+                    <Route exact path="/">
+                        <>
+                            <TopNav updateSearchQuery={this.updateSearchQuery} />
+                            <Content searchId={this.state.searchId}
+                                searchQuery={this.state.searchQuery}
+                                isRandomSearch={this.state.isRandomSearch}
+                            />
+                        </>
+                    </Route>
+                    <Route exact path="/about">
+                        <>
+                            <TopNav updateSearchQuery={this.updateSearchQuery} />
+                        </>
+                    </Route>
+                    <Route exact path="/download">
+                        <>
+                            <TopNav updateSearchQuery={this.updateSearchQuery} />
+                        </>
+                    </Route>
+                    <Route exact path="/contact">
+                        <>
+                            <TopNav updateSearchQuery={this.updateSearchQuery} />
+                        </>
+                    </Route>
+
+                </Switch>
+            </Router>
         )
     }
 

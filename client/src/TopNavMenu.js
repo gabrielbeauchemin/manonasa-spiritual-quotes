@@ -34,17 +34,21 @@ const TopNavMenu = (props) => {
 }
 
 function menuClick(isMobile) {
-    let menuClass = isMobile ? '.menuMobile ul' : '.menu ul';
-    let menu = document.querySelectorAll(menuClass)[0];
-    //toggle menu apparence
-    if (menu.style.display === "none") {
-        menu.style.display = "block";
-        menu.style.marginTop = "10px";
+    try {
+        let menuClass = isMobile ? '.menuMobile ul' : '.menu ul';
+        let menu = document.querySelectorAll(menuClass)[0];
+        //toggle menu apparence
+        if (menu.style.display === "none") {
+            menu.style.display = "block";
+            menu.style.marginTop = "10px";
+        }
+        else {
+            menu.style.display = "none";
+            menu.style.marginTop = "0px";
+        }
     }
-    else {
-        menu.style.display = "none";
-        menu.style.marginTop = "0px";
-    }
+    catch (e) { }
+
 }
 
 function menuBlur(isMobile) {
@@ -53,10 +57,14 @@ function menuBlur(isMobile) {
     //a simple workaround is to fire it after 200ms, so if the user has clicked on a menu item
     //he will be redirect to the requested page
     setTimeout(function () {
-        let menuClass = isMobile ? '.menuMobile ul' : '.menu ul';
-        let menu = document.querySelectorAll(menuClass)[0];
-        menu.style.display = "none";
-        menu.style.marginTop = "0em";
+        try {
+            let menuClass = isMobile ? '.menuMobile ul' : '.menu ul';
+            let menu = document.querySelectorAll(menuClass)[0];
+            menu.style.display = "none";
+            menu.style.marginTop = "0em";
+        }
+        catch (e) { }
+
     }, 200);
 }
 
