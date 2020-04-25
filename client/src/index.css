@@ -443,5 +443,118 @@ body {
 
 /* End content */
 
+/* Begin Pages */
+@media screen and (min-width: 1301px) {
+  .pageTitle{
+    font-size: 3em;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 10%;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .pageTitle{
+    font-size: 2.8em;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 14%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .pageTitle{
+    font-size: 2.4em;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 20%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .pageTitle{
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 28%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .pageTitle{
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 20%;
+  }
+}
+
+@media screen and (min-width: 1301px) {
+  .pageTitleDownload{
+    font-size: 3em;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 25%;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .pageTitleDownload{
+    font-size: 2.8em;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 35%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .pageTitleDownload{
+    font-size: 2.4em;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 40%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .pageTitleDownload{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 47%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .pageTitleDownload{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 54%;
+  }
+}
+
+@media screen and (min-width: 1301px) {
+  .pageParagraph{
+    font-size: 2em;
+    margin: 0 auto;
+    width: 80%;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .pageParagraph{
+    font-size: 1.8em;
+    margin: 0 auto;
+    width: 80%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .pageParagraph{
+    font-size: 1.8em;
+    margin: 0 auto;
+    width: 80%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .pageParagraph{
+    font-size: 1.5em;
+    margin: 0 auto;
+    width: 80%;
+  }
+}
+/*End Pages */
+
 
 

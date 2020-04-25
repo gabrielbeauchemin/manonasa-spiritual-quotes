@@ -6,6 +6,9 @@ import {
 } from "react-router-dom";
 import TopNav from './TopNav'
 import Content from './Content'
+import AboutPage from './AboutPage'
+import DownloadPage from './DownloadPage'
+import ContactPage from './ContactPage'
 
 class Quote extends React.Component {
 
@@ -36,16 +39,19 @@ class Quote extends React.Component {
                     <Route exact path="/about">
                         <>
                             <TopNav updateSearchQuery={this.updateSearchQuery} />
+                            <AboutPage/>
                         </>
                     </Route>
                     <Route exact path="/download">
                         <>
                             <TopNav updateSearchQuery={this.updateSearchQuery} />
+                            <DownloadPage/>
                         </>
                     </Route>
                     <Route exact path="/contact">
                         <>
                             <TopNav updateSearchQuery={this.updateSearchQuery} />
+                            <ContactPage/>
                         </>
                     </Route>
 
