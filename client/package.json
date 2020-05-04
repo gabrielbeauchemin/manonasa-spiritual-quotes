@@ -9,11 +9,11 @@
     "react-modal": "^3.11.1",
     "react-responsive": "^8.0.3",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.3.0",
+    "react-scripts": "3.0.1",
     "react-select": "^3.1.0"
   },
   "scripts": {
-    "launchApi": "node ../api/bin/www",
+    "launchApi": "node ../bin/www",
     "launchClient": "react-scripts start",
     "start": "concurrently --kill-others \"npm run launchApi\" \"npm run launchClient\"",
     "build": "react-scripts build",

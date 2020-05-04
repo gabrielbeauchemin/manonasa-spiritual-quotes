@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b571c547.chunk.css",
+    "main.js": "/static/js/main.1b3d7bd6.chunk.js",
+    "main.js.map": "/static/js/main.1b3d7bd6.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.95e5e9d8.chunk.js": "/static/js/2.95e5e9d8.chunk.js",
+    "static/js/2.95e5e9d8.chunk.js.map": "/static/js/2.95e5e9d8.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.edffcfd01fc71e302ee21b810248c66c.js": "/precache-manifest.edffcfd01fc71e302ee21b810248c66c.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.b571c547.chunk.css.map": "/static/css/main.b571c547.chunk.css.map",
+    "static/media/about.svg": "/static/media/about.5641eb51.svg",
+    "static/media/back.svg": "/static/media/back.6468634d.svg",
+    "static/media/contact.svg": "/static/media/contact.eed4b218.svg",
+    "static/media/copy.svg": "/static/media/copy.4e5afb15.svg",
+    "static/media/download.svg": "/static/media/download.543de713.svg",
+    "static/media/hamburgerMenu.svg": "/static/media/hamburgerMenu.1a1bc5e8.svg",
+    "static/media/logo.svg": "/static/media/logo.95f8d4a5.svg",
+    "static/media/plus.svg": "/static/media/plus.229d88d5.svg",
+    "static/media/search.svg": "/static/media/search.275e1e4d.svg",
+    "static/media/searchRandom.svg": "/static/media/searchRandom.7995c455.svg",
+    "static/media/showMore.svg": "/static/media/showMore.9374f8f2.svg"
+  }
+}
