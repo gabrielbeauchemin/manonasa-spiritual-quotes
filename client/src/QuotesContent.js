@@ -3,7 +3,7 @@ import ContentMobile from './ContentMobile';
 import ContentDesktop from './ContentDesktop';
 import MediaQuery from 'react-responsive'
 
-class Content extends React.Component {
+class QuotesContent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -143,4 +143,4 @@ class Content extends React.Component {
     }
 }
 
-export default Content;
+export default QuotesContent;
