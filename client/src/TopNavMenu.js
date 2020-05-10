@@ -65,7 +65,7 @@ const TopNavMenu = (props) => {
           src={menuIcon}
           tabIndex={0}
           onClick={() => menuClick(false)}
-          onBlur={(e) => menuBlur(e, false)}
+          onBlur={(e) => menuBlur(false)}
           alt=""
           width="100%"
           height="100%"

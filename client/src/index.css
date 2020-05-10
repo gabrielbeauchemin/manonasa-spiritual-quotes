@@ -119,7 +119,7 @@ body {
   position: relative;
   cursor: pointer;
   padding-right: 30px;
-  margin-left: -2.4em;
+  margin-left: -40px;
 }
 
 .menuMobile {
@@ -174,7 +174,7 @@ body {
   position: relative;
   cursor: pointer;
   padding-right: 30px;
-  margin-left: -2.4em;
+  margin-left: -40px;
 }
 /* End Button Parameters with drop down */
 
