@@ -24,7 +24,7 @@ const TopNavMenu = (props) => {
         />
         <ul style={{ display: "none" }}>
           <li>
-            <a href="./about">
+            <a href={"./about?lang=" + props.language}>
               <div style={{ display: "flex" }}>
                 <img src={aboutIcon} alt="" className="menuIcon" />
                 About
@@ -32,7 +32,7 @@ const TopNavMenu = (props) => {
             </a>
           </li>
           <li>
-            <a href="./">
+            <a href={"./?lang=" + props.language}>
               <div style={{ display: "flex" }}>
                 <img src={searchIcon} alt="" className="menuIcon" />
                 Search quotes
@@ -40,17 +40,17 @@ const TopNavMenu = (props) => {
             </a>
           </li>
           <li>
-            <a href="./download">
+            <a href={"./download?lang=" + props.language}>
               <div style={{ display: "flex" }}>
-                <img src={contactIcon} alt="" className="menuIcon" />
+                <img src={downloadIcon} alt="" className="menuIcon" />
                 Download all quotes
               </div>
             </a>
           </li>
           <li>
-            <a href="./contact">
+            <a href={"./contact?lang=" + props.language}>
               <div style={{ display: "flex" }}>
-                <img src={downloadIcon} alt="" className="menuIcon" />
+                <img src={contactIcon} alt="" className="menuIcon" />
                 Contact
               </div>
             </a>
@@ -72,7 +72,7 @@ const TopNavMenu = (props) => {
         />
         <ul style={{ display: "none" }}>
           <li>
-            <a href="./about">
+            <a href={"./about?lang=" + props.language}>
               <div style={{ display: "flex" }}>
                 <img src={aboutIcon} alt="" className="menuIcon" />
                 About
@@ -80,7 +80,7 @@ const TopNavMenu = (props) => {
             </a>
           </li>
           <li>
-            <a href="./">
+            <a href={"./?lang=" + props.language}>
               <div style={{ display: "flex" }}>
                 <img src={searchIcon} alt="" className="menuIcon" />
                 Search quotes
@@ -88,17 +88,17 @@ const TopNavMenu = (props) => {
             </a>
           </li>
           <li>
-            <a href="./download">
+            <a href={"./download?lang=" + props.language}>
               <div style={{ display: "flex" }}>
-                <img src={contactIcon} alt="" className="menuIcon" />
+                <img src={downloadIcon} alt="" className="menuIcon" />
                 Download all quotes
               </div>
             </a>
           </li>
           <li>
-            <a href="./contact">
+            <a href={"./contact?lang=" + props.language}>
               <div style={{ display: "flex" }}>
-                <img src={downloadIcon} alt="" className="menuIcon" />
+                <img src={contactIcon} alt="" className="menuIcon" />
                 Contact
               </div>
             </a>

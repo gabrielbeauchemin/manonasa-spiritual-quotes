@@ -1,14 +1,14 @@
 import React from "react";
 import TopNav from "../TopNav";
-import { useLanguage } from "../useLanguage";
+import { useLanguage } from "../hooks/useLanguage";
 
 const ContactPage = (props) => {
   let language = useLanguage();
   if (language === "fr") {
     return (
       <>
-        <TopNav updateSearchQuery={props.updateSearchQuery} />
-        <div className="pageTitle">Contacte</div>
+        <TopNav updateSearchQuery={props.updateSearchQuery} language={language}/>
+        <div className="pageTitle">Contact</div>
         <br />
         <div className="pageParagraph">
           Pour reporter un bug ou pour toutes suggestions ou questions, vous
@@ -20,7 +20,7 @@ const ContactPage = (props) => {
   } else {
     return (
       <>
-        <TopNav updateSearchQuery={props.updateSearchQuery} />
+        <TopNav updateSearchQuery={props.updateSearchQuery} language={language}/>
         <div className="pageTitle">Contact</div>
         <br />
         <div className="pageParagraph">

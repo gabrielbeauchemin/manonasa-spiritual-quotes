@@ -1,7 +1,7 @@
 import React from "react";
 import TopNav from "../TopNav";
 import QuotesContent from "../QuotesContent";
-import { useLanguage } from "../useLanguage";
+import { useLanguage } from "../hooks/useLanguage";
 
 const QuotesPage = (props) => {
   let language = useLanguage();

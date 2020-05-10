@@ -1,13 +1,13 @@
 import React from "react";
 import TopNav from "../TopNav";
-import { useLanguage } from "../useLanguage";
+import { useLanguage } from "../hooks/useLanguage";
 
 const DownloadPage = (props) => {
   let language = useLanguage();
   if (language === "fr") {
     return (
       <>
-        <TopNav updateSearchQuery={props.updateSearchQuery} />
+        <TopNav updateSearchQuery={props.updateSearchQuery} language={language}/>
         <div className="pageTitleDownload">Téléchargez les citations</div>
         <br />
         <div className="pageParagraph">
@@ -23,7 +23,7 @@ const DownloadPage = (props) => {
   } else {
     return (
       <>
-        <TopNav updateSearchQuery={props.updateSearchQuery} />
+        <TopNav updateSearchQuery={props.updateSearchQuery} language={language}/>
         <div className="pageTitleDownload">Download all quotes</div>
         <br />
         <div className="pageParagraph">
