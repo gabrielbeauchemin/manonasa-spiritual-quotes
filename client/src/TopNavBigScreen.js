@@ -1,16 +1,13 @@
 import React from "react";
 import logo from "./logo.svg";
-import searchIcon from "./icons/search.svg";
-import searchRandomIcon from "./icons/searchRandom.svg";
 import Select from "react-select";
 import TopNavMenu from "./TopNavMenu";
+import TopNavSearchBox from "./TopNavSearchBox";
 
 class TopNavBigScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchQuery: "",
-      isRandomSearch: false,
       languages: [
         { value: "en", label: "English" },
         { value: "fr", label: "Français" },
@@ -33,47 +30,9 @@ class TopNavBigScreen extends React.Component {
             </a>
           </div>
         </div>
-        <form
-          className="searchBox"
-          onSubmit={(e) => {
-            this.props.updateSearchQuery(
-              this.state.searchQuery,
-              this.state.isRandomSearch
-            );
-            e.preventDefault();
-          }}
-        >
-          <input
-            autoFocus
-            type="text"
-            alt=""
-            placeholder="Search Spiritual Quotes"
-            name="search"
-            style={{ paddingLeft: "8px" }}
-            value={this.state.searchQuery}
-            onChange={(e) => this.setState({ searchQuery: e.target.value })}
-          />
-          <input
-            className="searchIcon"
-            title="search"
-            alt="search"
-            type="image"
-            src={searchIcon}
-            width="100%"
-            height="100%"
-            onClick={() => this.setState({ isRandomSearch: false })}
-          />
-          <input
-            className="searchIcon"
-            title="search randomly"
-            alt="search randomly"
-            type="image"
-            width="100%"
-            height="100%"
-            src={searchRandomIcon}
-            onClick={() => this.setState({ isRandomSearch: true })}
-          />
-        </form>
+
+        <TopNavSearchBox updateSearchQuery={this.props.updateSearchQuery} />
+
         <div className="languagesSelectorBigScreen">
           <Select
             options={this.state.languages}
