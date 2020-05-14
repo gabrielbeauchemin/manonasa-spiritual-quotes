@@ -15,6 +15,7 @@ const TopNav = (props) => {
       <TopNavBigScreen
         updateSearchQuery={props.updateSearchQuery}
         language={props.language}
+        keywords={props.keywords}
       />
     );
   } else if (isDesktopOrTablet) {
@@ -22,6 +23,7 @@ const TopNav = (props) => {
       <TopNavDesktop
         updateSearchQuery={props.updateSearchQuery}
         language={props.language}
+        keywords={props.keywords}
       />
     );
   } else {
@@ -30,6 +32,7 @@ const TopNav = (props) => {
       <TopNavMobile
         updateSearchQuery={props.updateSearchQuery}
         language={props.language}
+        keywords={props.keywords}
       />
     );
   }

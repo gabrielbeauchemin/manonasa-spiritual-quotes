@@ -7,7 +7,11 @@ const ContactPage = (props) => {
   if (language === "fr") {
     return (
       <>
-        <TopNav updateSearchQuery={props.updateSearchQuery} language={language}/>
+        <TopNav
+          updateSearchQuery={props.updateSearchQuery}
+          language={language}
+          keywords={props.searchQuery}
+        />
         <div className="pageTitle">Contact</div>
         <br />
         <div className="pageParagraph">
@@ -20,7 +24,10 @@ const ContactPage = (props) => {
   } else {
     return (
       <>
-        <TopNav updateSearchQuery={props.updateSearchQuery} language={language}/>
+        <TopNav
+          updateSearchQuery={props.updateSearchQuery}
+          language={language}
+        />
         <div className="pageTitle">Contact</div>
         <br />
         <div className="pageParagraph">

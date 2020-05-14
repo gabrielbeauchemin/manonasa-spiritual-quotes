@@ -7,7 +7,10 @@ const DownloadPage = (props) => {
   if (language === "fr") {
     return (
       <>
-        <TopNav updateSearchQuery={props.updateSearchQuery} language={language}/>
+        <TopNav
+          updateSearchQuery={props.updateSearchQuery}
+          language={language}
+        />
         <div className="pageTitleDownload">Téléchargez les citations</div>
         <br />
         <div className="pageParagraph">
@@ -23,7 +26,11 @@ const DownloadPage = (props) => {
   } else {
     return (
       <>
-        <TopNav updateSearchQuery={props.updateSearchQuery} language={language}/>
+        <TopNav
+          updateSearchQuery={props.updateSearchQuery}
+          language={language}
+          keywords={props.searchQuery}
+        />
         <div className="pageTitleDownload">Download all quotes</div>
         <br />
         <div className="pageParagraph">

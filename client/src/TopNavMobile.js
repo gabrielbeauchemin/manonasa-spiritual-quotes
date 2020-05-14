@@ -2,22 +2,14 @@ import React from "react";
 import logo from "./logo.svg";
 import searchIcon from "./icons/search.svg";
 import backIcon from "./icons/back.svg";
-import Select from "react-select";
 import TopNavMenu from "./TopNavMenu";
 import TopNavSearchBox from "./TopNavSearchBox";
+import LanguageSelector from "./LanguageSelector";
 
 class TopNavMobile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      languages: [
-        { value: "en", label: "En" },
-        { value: "fr", label: "Fr" },
-      ],
-      selectedLanguage:
-        props.language === "fr"
-          ? { value: "fr", label: "Fr" }
-          : { value: "en", label: "En" },
       searchBoxActivated: false,
     };
   }
@@ -41,7 +33,10 @@ class TopNavMobile extends React.Component {
             }
           />
           <div className="topNavMobileSearchActivated">
-            <TopNavSearchBox updateSearchQuery={this.props.updateSearchQuery} />
+            <TopNavSearchBox
+              updateSearchQuery={this.props.updateSearchQuery}
+              keywords={this.props.keywords}
+            />
           </div>
         </div>
       );
@@ -71,31 +66,7 @@ class TopNavMobile extends React.Component {
               }
             />
           </div>
-          <div className="languagesSelector">
-            <Select
-              options={this.state.languages}
-              value={[this.state.selectedLanguage]}
-              onChange={(newValue, actionMeta) =>
-                this.setState({ selectedLanguage: newValue })
-              }
-              theme={(theme) => ({
-                ...theme,
-                borderRadius: 2,
-                colors: {
-                  ...theme.colors,
-                  primary25: "#EAEAEA",
-                  primary: "lightgray",
-                },
-              })}
-              styles={{
-                control: (base) => ({
-                  ...base,
-                  height: 30,
-                  minHeight: 30,
-                }),
-              }}
-            />
-          </div>
+          <LanguageSelector language={this.props.language} />
         </div>
       );
     }

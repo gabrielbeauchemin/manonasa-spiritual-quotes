@@ -32,20 +32,34 @@ function App() {
         <Route
           exact
           path="/about"
-          component={() => <AboutPage updateSearchQuery={updateSearchQuery} />}
+          component={() => (
+            <AboutPage
+              updateSearchQuery={updateSearchQuery}
+              searchQuery={searchQuery}
+              isRandomSearch={isRandomSearch}
+            />
+          )}
         />
         <Route
           exact
           path="/download"
           component={() => (
-            <DownloadPage updateSearchQuery={updateSearchQuery} />
+            <DownloadPage
+              updateSearchQuery={updateSearchQuery}
+              searchQuery={searchQuery}
+              isRandomSearch={isRandomSearch}
+            />
           )}
         />
         <Route
           exact
           path="/contact"
           component={() => (
-            <ContactPage updateSearchQuery={updateSearchQuery} />
+            <ContactPage
+              updateSearchQuery={updateSearchQuery}
+              searchQuery={searchQuery}
+              isRandomSearch={isRandomSearch}
+            />
           )}
         />
         <Route exact path="/">

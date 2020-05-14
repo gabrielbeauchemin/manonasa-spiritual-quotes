@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import searchIcon from "./icons/search.svg";
 import searchRandomIcon from "./icons/searchRandom.svg";
 import { Redirect } from "react-router-dom";
@@ -6,12 +6,19 @@ import { useMediaQuery } from "react-responsive";
 
 const TopNavSearchBox = (props) => {
   const [redirectSearchQuotes, setRedirectSearchQuotes] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(props.keywords || "");
   const [isRandomSearch, setIsRandomSearch] = useState(false);
   const isMobile = useMediaQuery({
     query: "(max-device-width: 600px)",
   });
   const searchBoxClass = isMobile ? "searchBoxMobile" : "searchBox";
+
+  useEffect(() => {
+    if (redirectSearchQuotes) {
+      props.updateSearchQuery(searchQuery, isRandomSearch);
+    }
+  }, [redirectSearchQuotes, searchQuery, isRandomSearch, props]);
+
   if (redirectSearchQuotes) {
     return <Redirect to="/" />;
   }

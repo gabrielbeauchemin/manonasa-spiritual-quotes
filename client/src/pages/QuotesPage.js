@@ -7,7 +7,11 @@ const QuotesPage = (props) => {
   let language = useLanguage();
   return (
     <>
-      <TopNav updateSearchQuery={props.updateSearchQuery} language={language} />
+      <TopNav
+        updateSearchQuery={props.updateSearchQuery}
+        language={language}
+        keywords={props.searchQuery}
+      />
       <QuotesContent
         language={language}
         searchId={props.searchId}
