@@ -4,11 +4,12 @@ import QuotesContent from "../QuotesContent";
 import { useLanguage } from "../hooks/useLanguage";
 
 const QuotesPage = (props) => {
-  let language = useLanguage();
+  let language = useLanguage(props.language);
   return (
     <>
       <TopNav
         updateSearchQuery={props.updateSearchQuery}
+        updateLanguage={props.updateLanguage}
         language={language}
         keywords={props.searchQuery}
       />

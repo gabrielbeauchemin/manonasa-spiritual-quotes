@@ -19,7 +19,7 @@ body {
 
 
 /* layout that contain the following elements: menu, searchBox, languageToggle, filters*/
-.topNavLaptop{
+.topNavDesktop{
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
@@ -448,7 +448,7 @@ body {
     font-size: 3em;
     font-weight: bold;
     margin: 0 auto;
-    width: 10%;
+    width: 15%;
   }
 }
 @media screen and (max-width: 1300px) {

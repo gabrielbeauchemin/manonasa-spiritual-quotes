@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { useMediaQuery } from "react-responsive";
 
-let LanguageSelector = (props) => {
+let LanguageSelector = ({ language, updateLanguage }) => {
   const [languages] = useState([
     { value: "en", label: "En" },
     { value: "fr", label: "Fr" },
   ]);
   const [selectedLanguage, setSelectedLanguage] = useState(
-    props.language === "fr"
+    language === "fr"
       ? { value: "fr", label: "Fr" }
       : { value: "en", label: "En" }
   );
@@ -16,6 +16,11 @@ let LanguageSelector = (props) => {
   let LanguageSelectorClass = isBigScreen
     ? "languagesSelectorBigScreen"
     : "languagesSelector";
+
+  useEffect(() => {
+    updateLanguage(selectedLanguage.value);
+  }, [updateLanguage, selectedLanguage]);
+
   return (
     <div className={LanguageSelectorClass}>
       <Select

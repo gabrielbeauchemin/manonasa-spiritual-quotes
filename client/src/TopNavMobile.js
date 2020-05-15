@@ -44,7 +44,7 @@ class TopNavMobile extends React.Component {
       return (
         <div className="topNavMobile">
           <div className="menuAndLogoMobile">
-            <TopNavMenu language={this.state.selectedLanguage.value} />
+            <TopNavMenu language={this.props.language} />
             <div className="logo">
               <a href="/">
                 <img src={logo} alt="" width="100%" height="100%" />
@@ -66,7 +66,7 @@ class TopNavMobile extends React.Component {
               }
             />
           </div>
-          <LanguageSelector language={this.props.language} />
+          <LanguageSelector updateLanguage={this.props.updateLanguage} language={this.props.language} />
         </div>
       );
     }

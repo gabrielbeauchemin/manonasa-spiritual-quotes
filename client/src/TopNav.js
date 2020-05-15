@@ -14,6 +14,7 @@ const TopNav = (props) => {
     return (
       <TopNavBigScreen
         updateSearchQuery={props.updateSearchQuery}
+        updateLanguage={props.updateLanguage}
         language={props.language}
         keywords={props.keywords}
       />
@@ -22,6 +23,7 @@ const TopNav = (props) => {
     return (
       <TopNavDesktop
         updateSearchQuery={props.updateSearchQuery}
+        updateLanguage={props.updateLanguage}
         language={props.language}
         keywords={props.keywords}
       />
@@ -31,6 +33,7 @@ const TopNav = (props) => {
     return (
       <TopNavMobile
         updateSearchQuery={props.updateSearchQuery}
+        updateLanguage={props.updateLanguage}
         language={props.language}
         keywords={props.keywords}
       />

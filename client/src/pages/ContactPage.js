@@ -3,12 +3,13 @@ import TopNav from "../TopNav";
 import { useLanguage } from "../hooks/useLanguage";
 
 const ContactPage = (props) => {
-  let language = useLanguage();
+  let language = useLanguage(props.language);
   if (language === "fr") {
     return (
       <>
         <TopNav
           updateSearchQuery={props.updateSearchQuery}
+          updateLanguage={props.updateLanguage}
           language={language}
           keywords={props.searchQuery}
         />
@@ -26,7 +27,9 @@ const ContactPage = (props) => {
       <>
         <TopNav
           updateSearchQuery={props.updateSearchQuery}
+          updateLanguage={props.updateLanguage}
           language={language}
+          keywords={props.searchQuery}
         />
         <div className="pageTitle">Contact</div>
         <br />

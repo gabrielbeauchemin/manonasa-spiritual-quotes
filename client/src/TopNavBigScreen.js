@@ -9,7 +9,7 @@ class TopNavBigScreen extends React.Component {
     return (
       <div className="topNavBigScreen">
         <div className="menuAndLogo">
-          <TopNavMenu language={this.state.selectedLanguage.value} />
+          <TopNavMenu language={this.props.language} />
           <div className="logo">
             <a href="/">
               <img src={logo} alt="" width="100%" height="100%" />
@@ -22,7 +22,7 @@ class TopNavBigScreen extends React.Component {
           keywords={this.props.keywords}
         />
 
-        <LanguageSelector language={this.props.language} />
+        <LanguageSelector updateLanguage={this.props.updateLanguage} language={this.props.language} />
       </div>
     );
   }

@@ -7,9 +7,9 @@ import LanguageSelector from "./LanguageSelector";
 class TopNavDesktop extends React.Component {
   render() {
     return (
-      <div className="topNavLaptop">
+      <div className="topNavDesktop">
         <div className="menuAndLogo">
-          <TopNavMenu language={this.state.selectedLanguage.value} />
+          <TopNavMenu language={this.props.language} />
           <div className="logo">
             <a href="/">
               <img src={logo} alt="" width="100%" height="100%" />
@@ -19,7 +19,7 @@ class TopNavDesktop extends React.Component {
 
         <TopNavSearchBox updateSearchQuery={this.props.updateSearchQuery} />
 
-        <LanguageSelector language={this.props.language} />
+        <LanguageSelector updateLanguage={this.props.updateLanguage} language={this.props.language} />
       </div>
     );
   }

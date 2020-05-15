@@ -19,6 +19,7 @@ function App() {
   const [searchId, setsearchId] = useState(uuidv4());
   const [searchQuery, setSearchQuery] = useState("");
   const [isRandomSearch, setIsRandomSearch] = useState(true);
+  const [language, setLanguage] = useState(undefined);
 
   function updateSearchQuery(searchQuery, isRandomSearch) {
     setsearchId(uuidv4());
@@ -35,8 +36,10 @@ function App() {
           component={() => (
             <AboutPage
               updateSearchQuery={updateSearchQuery}
+              updateLanguage={setLanguage}
               searchQuery={searchQuery}
               isRandomSearch={isRandomSearch}
+              language={language}
             />
           )}
         />
@@ -46,8 +49,10 @@ function App() {
           component={() => (
             <DownloadPage
               updateSearchQuery={updateSearchQuery}
+              updateLanguage={setLanguage}
               searchQuery={searchQuery}
               isRandomSearch={isRandomSearch}
+              language={language}
             />
           )}
         />
@@ -57,17 +62,21 @@ function App() {
           component={() => (
             <ContactPage
               updateSearchQuery={updateSearchQuery}
+              updateLanguage={setLanguage}
               searchQuery={searchQuery}
               isRandomSearch={isRandomSearch}
+              language={language}
             />
           )}
         />
         <Route exact path="/">
           <QuotesPage
             updateSearchQuery={updateSearchQuery}
+            updateLanguage={setLanguage}
             searchId={searchId}
             searchQuery={searchQuery}
             isRandomSearch={isRandomSearch}
+            language={language}
           />
         </Route>
       </Switch>
