@@ -5,108 +5,67 @@ import aboutIcon from "./icons/about.svg";
 import contactIcon from "./icons/contact.svg";
 import downloadIcon from "./icons/download.svg";
 import searchIcon from "./icons/search.svg";
+import sunIcon from "./icons/sun.svg";
 
 const TopNavMenu = (props) => {
   const isMobile = useMediaQuery({
     query: "(max-device-width: 600px)",
   });
-  if (isMobile) {
-    return (
-      <div className="menuMobile">
-        <img
-          src={menuIcon}
-          tabIndex={0}
-          onClick={() => menuClick(true)}
-          onBlur={(e) => menuBlur(e, true)}
-          alt=""
-          width="100%"
-          height="100%"
-        />
-        <ul style={{ display: "none" }}>
-          <li>
-            <a href={"./about?lang=" + props.language}>
-              <div style={{ display: "flex" }}>
-                <img src={aboutIcon} alt="" className="menuIcon" />
-                About
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href={"./?lang=" + props.language}>
-              <div style={{ display: "flex" }}>
-                <img src={searchIcon} alt="" className="menuIcon" />
-                Search quotes
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href={"./download?lang=" + props.language}>
-              <div style={{ display: "flex" }}>
-                <img src={downloadIcon} alt="" className="menuIcon" />
-                Download all quotes
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href={"./contact?lang=" + props.language}>
-              <div style={{ display: "flex" }}>
-                <img src={contactIcon} alt="" className="menuIcon" />
-                Contact
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    );
-  } else {
-    return (
-      <div className="menu">
-        <img
-          src={menuIcon}
-          tabIndex={0}
-          onClick={() => menuClick(false)}
-          onBlur={(e) => menuBlur(false)}
-          alt=""
-          width="100%"
-          height="100%"
-        />
-        <ul style={{ display: "none" }}>
-          <li>
-            <a href={"./about?lang=" + props.language}>
-              <div style={{ display: "flex" }}>
-                <img src={aboutIcon} alt="" className="menuIcon" />
-                About
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href={"./?lang=" + props.language}>
-              <div style={{ display: "flex" }}>
-                <img src={searchIcon} alt="" className="menuIcon" />
-                Search quotes
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href={"./download?lang=" + props.language}>
-              <div style={{ display: "flex" }}>
-                <img src={downloadIcon} alt="" className="menuIcon" />
-                Download all quotes
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href={"./contact?lang=" + props.language}>
-              <div style={{ display: "flex" }}>
-                <img src={contactIcon} alt="" className="menuIcon" />
-                Contact
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    );
-  }
+  return (
+    <div className={isMobile ? "menuMobile" : "menu"}>
+      <img
+        src={menuIcon}
+        tabIndex={0}
+        onClick={() => menuClick(isMobile)}
+        onBlur={(e) => menuBlur(isMobile)}
+        alt=""
+        width="100%"
+        height="100%"
+      />
+      <ul style={{ display: "none" }}>
+        <li>
+          <a href={"./about?lang=" + props.language}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img src={aboutIcon} alt="" className="menuIcon" />
+              <div>About</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href={"./?lang=" + props.language}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img src={searchIcon} alt="" className="menuIcon" />
+              <div>Search quotes</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href={"./dailyQuote?lang=" + props.language}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img src={sunIcon} alt="" className="menuIcon" />
+              <div>Daily quote</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href={"./download?lang=" + props.language}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img src={downloadIcon} alt="" className="menuIcon" />
+              <div>Download all quotes</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href={"./contact?lang=" + props.language}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img src={contactIcon} alt="" className="menuIcon" />
+              <div>Contact</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  );
 };
 
 function menuClick(isMobile) {

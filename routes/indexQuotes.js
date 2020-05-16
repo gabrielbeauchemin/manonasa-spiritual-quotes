@@ -29,4 +29,8 @@ router.get('/', function (req, res, next) {
   res.send(quotes);
 });
 
+router.get('/daily', function (req, res, next) {
+  res.send(quotesManager.getRandomQuoteByDay());
+});
+
 module.exports = router;

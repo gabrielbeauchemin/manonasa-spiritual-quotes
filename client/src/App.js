@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AboutPage from "./pages/AboutPage";
 import DownloadPage from "./pages/DownloadPage";
 import ContactPage from "./pages/ContactPage";
+import DailyQuotePage from "./pages/DailyQuotePage";
 import QuotesPage from "./pages/QuotesPage";
 
 //https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
@@ -38,7 +39,6 @@ function App() {
               updateSearchQuery={updateSearchQuery}
               updateLanguage={setLanguage}
               searchQuery={searchQuery}
-              isRandomSearch={isRandomSearch}
               language={language}
             />
           )}
@@ -51,7 +51,6 @@ function App() {
               updateSearchQuery={updateSearchQuery}
               updateLanguage={setLanguage}
               searchQuery={searchQuery}
-              isRandomSearch={isRandomSearch}
               language={language}
             />
           )}
@@ -64,7 +63,18 @@ function App() {
               updateSearchQuery={updateSearchQuery}
               updateLanguage={setLanguage}
               searchQuery={searchQuery}
-              isRandomSearch={isRandomSearch}
+              language={language}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/dailyQuote"
+          component={() => (
+            <DailyQuotePage
+              updateSearchQuery={updateSearchQuery}
+              updateLanguage={setLanguage}
+              searchQuery={searchQuery}
               language={language}
             />
           )}

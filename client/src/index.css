@@ -311,6 +311,16 @@ body {
   font-size: 1.4em;
 }
 
+.dailyQuote{
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+  font-size: 2em;
+}
+
 .quoteButton{
   width: 5%;
   border-radius: 3px;
