@@ -20,7 +20,7 @@ const TopNavSearchBox = (props) => {
   }, [redirectSearchQuotes, searchQuery, isRandomSearch, props]);
 
   if (redirectSearchQuotes) {
-    return <Redirect to="/" />;
+    return <Redirect to={"/?lang=" + props.language} />;
   }
   return (
     <form
@@ -38,7 +38,11 @@ const TopNavSearchBox = (props) => {
         autoFocus
         type="text"
         alt=""
-        placeholder="Search Spiritual Quotes"
+        placeholder={
+          props.language === "fr"
+            ? "Chercher des citations de spiritualité"
+            : "Search Spiritual Quotes"
+        }
         name="search"
         style={{ paddingLeft: "8px" }}
         value={searchQuery}
@@ -46,7 +50,7 @@ const TopNavSearchBox = (props) => {
       />
       <input
         className="searchIcon"
-        title="search"
+        title={props.language === "fr" ? "Chercher" : "Search"}
         alt="search"
         type="image"
         src={searchIcon}
@@ -56,7 +60,7 @@ const TopNavSearchBox = (props) => {
       />
       <input
         className="searchIcon"
-        title="search randomly"
+        title={props.language === "fr" ? "Chercher aléatoirement" : "Search randomly"}
         alt="search randomly"
         type="image"
         width="100%"

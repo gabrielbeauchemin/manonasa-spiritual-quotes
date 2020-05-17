@@ -27,7 +27,7 @@ const TopNavMenu = (props) => {
           <a href={"./about?lang=" + props.language}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <img src={aboutIcon} alt="" className="menuIcon" />
-              <div>About</div>
+              <div>{props.language === "fr" ? "A propos" : "About"}</div>
             </div>
           </a>
         </li>
@@ -35,7 +35,7 @@ const TopNavMenu = (props) => {
           <a href={"./?lang=" + props.language}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <img src={searchIcon} alt="" className="menuIcon" />
-              <div>Search quotes</div>
+              <div>{props.language === "fr" ? "Chercher des citations" : "Search quotes"}</div>
             </div>
           </a>
         </li>
@@ -43,7 +43,7 @@ const TopNavMenu = (props) => {
           <a href={"./dailyQuote?lang=" + props.language}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <img src={sunIcon} alt="" className="menuIcon" />
-              <div>Daily quote</div>
+              <div>{props.language === "fr" ? "Citation de la journée" : "Daily quote"}</div>
             </div>
           </a>
         </li>
@@ -51,7 +51,7 @@ const TopNavMenu = (props) => {
           <a href={"./download?lang=" + props.language}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <img src={downloadIcon} alt="" className="menuIcon" />
-              <div>Download all quotes</div>
+              <div>{props.language === "fr" ? "Télécharger les citations" : "Download all quotes"}</div>
             </div>
           </a>
         </li>
@@ -59,7 +59,7 @@ const TopNavMenu = (props) => {
           <a href={"./contact?lang=" + props.language}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <img src={contactIcon} alt="" className="menuIcon" />
-              <div>Contact</div>
+              <div>{props.language === "fr" ? "Nous joindre" : "Search"}</div>
             </div>
           </a>
         </li>

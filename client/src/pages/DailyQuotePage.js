@@ -30,7 +30,7 @@ const DailyQuotePage = (props) => {
         language={language}
         keywords={props.searchQuery}
       />
-      <div className="pageTitle">Daily quote</div>
+      <div className="pageTitle">{props.language === "fr" ? "Citation de la journée" : "Daily quote"}</div>
       <br />
       <br />
       {quote !== undefined && (

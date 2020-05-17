@@ -17,7 +17,7 @@ class TopNavDesktop extends React.Component {
           </div>
         </div>
 
-        <TopNavSearchBox updateSearchQuery={this.props.updateSearchQuery} />
+        <TopNavSearchBox updateSearchQuery={this.props.updateSearchQuery} language={this.props.language}/>
 
         <LanguageSelector updateLanguage={this.props.updateLanguage} language={this.props.language} />
       </div>

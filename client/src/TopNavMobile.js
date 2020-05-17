@@ -36,6 +36,7 @@ class TopNavMobile extends React.Component {
             <TopNavSearchBox
               updateSearchQuery={this.props.updateSearchQuery}
               keywords={this.props.keywords}
+              language={this.props.language}
             />
           </div>
         </div>
@@ -66,7 +67,10 @@ class TopNavMobile extends React.Component {
               }
             />
           </div>
-          <LanguageSelector updateLanguage={this.props.updateLanguage} language={this.props.language} />
+          <LanguageSelector
+            updateLanguage={this.props.updateLanguage}
+            language={this.props.language}
+          />
         </div>
       );
     }
