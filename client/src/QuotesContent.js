@@ -26,6 +26,7 @@ class QuotesContent extends React.Component {
           <ContentDesktop
             quotes={this.state.quotes}
             isRandomSearch={this.props.isRandomSearch}
+            language={this.props.language}
             authorFilters={this.state.authorFilters}
             sourceFilters={this.state.sourceFilters}
             allQuotesFetched={this.state.allQuotesFetched}
@@ -42,6 +43,7 @@ class QuotesContent extends React.Component {
           <ContentMobile
             quotes={this.state.quotes}
             isRandomSearch={this.props.isRandomSearch}
+            language={this.props.language}
             authorFilters={this.state.authorFilters}
             sourceFilters={this.state.sourceFilters}
             allQuotesFetched={this.state.allQuotesFetched}

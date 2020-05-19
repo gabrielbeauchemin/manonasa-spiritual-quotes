@@ -37,7 +37,7 @@ class Quote extends React.Component {
           <span>
             <button
               type="button"
-              title="Copy"
+              title={this.props.language === "fr" ? "Copier" : "Copy"}
               className="quoteButton"
               onClick={(e) =>
                 this.copyQuote(this.props.quote + " -" + this.props.author)
@@ -48,7 +48,11 @@ class Quote extends React.Component {
             <Snackbar ref={this.snackbarRef} />
             <button
               type="button"
-              title="See more information about the quote"
+              title={
+                this.props.language === "fr"
+                  ? "Plus d'information sur la citation"
+                  : "See more information about the quote"
+              }
               className="quoteButton"
               onMouseDown={this.openModal}
             >
@@ -60,21 +64,34 @@ class Quote extends React.Component {
               >
                 <div onClick={this.closeModal} className="close" /> <br />
                 <h3 style={{ margin: "0 auto", width: "40%" }}>
-                  Complete information about the quote
+                  {this.props.language === "fr"
+                    ? "Toutes les informations par rapport à la citation"
+                    : "Complete information about the quote"}
                 </h3>{" "}
                 <br />
                 <div className="moreQuoteFields">
                   <div className="moreQuoteField">
-                    <b>Quote:&nbsp;</b> <p>{this.props.quote}</p>
+                    <b>
+                      {this.props.language === "fr" ? "Citation" : "Quote"}
+                      :&nbsp;
+                    </b>{" "}
+                    <p>{this.props.quote}</p>
                   </div>
                   <div className="moreQuoteField">
-                    <b>Author:&nbsp;</b> <p>{this.props.author}</p>
+                    <b>
+                      {this.props.language === "fr" ? "Auteur" : "Author"}
+                      :&nbsp;
+                    </b>{" "}
+                    <p>{this.props.author}</p>
                   </div>
                   <div className="moreQuoteField">
                     <b>Source:&nbsp;</b> <p>{this.props.source}</p>
                   </div>
                   <div className="moreQuoteField">
-                    <b>Language:&nbsp;</b>{" "}
+                    <b>
+                      {this.props.language === "fr" ? "Langage" : "Language"}
+                      :&nbsp;
+                    </b>{" "}
                     <p>
                       {this.props.language === "en"
                         ? "English"
@@ -85,12 +102,20 @@ class Quote extends React.Component {
                   </div>
                   {this.props.chapter !== undefined && (
                     <div className="moreQuoteField">
-                      <b>Chapter:&nbsp;</b> <p>{this.props.chapter}</p>
+                      <b>
+                        {this.props.language === "fr" ? "Chapitre" : "Chapter"}
+                        :&nbsp;
+                      </b>{" "}
+                      <p>{this.props.chapter}</p>
                     </div>
                   )}
                   {this.props.number !== undefined && (
                     <div className="moreQuoteField">
-                      <b>Number:&nbsp;</b> <p>{this.props.number}</p>
+                      <b>
+                        {this.props.language === "fr" ? "Numéro" : "Number"}
+                        :&nbsp;
+                      </b>{" "}
+                      <p>{this.props.number}</p>
                     </div>
                   )}
                 </div>
@@ -106,7 +131,9 @@ class Quote extends React.Component {
   //reference: https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
   copyQuote(quote) {
     this.copyToClipBoard(quote);
-    this.snackbarRef.current.openSnackBar("Copied!");
+    this.snackbarRef.current.openSnackBar(
+      this.props.language === "fr" ? "Copié!" : "Copied!"
+    );
   }
 
   copyToClipBoard(quote) {

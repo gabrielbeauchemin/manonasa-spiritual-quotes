@@ -26,7 +26,7 @@ const ContentMobile = (props) => {
                     }
                     {contentMobileActivated &&
                         <>
-                            <Filter display="Author" values={props.authorFilters} onFilterChange={(authorFilters) => props.updateAuthorFilters(authorFilters)} />
+                            <Filter display={props.language === "fr" ? "Auteur" : "Author"} values={props.authorFilters} onFilterChange={(authorFilters) => props.updateAuthorFilters(authorFilters)} />
                             <Filter display="Book" values={props.sourceFilters} onFilterChange={(sourceFilters) => props.updateSourceFilters(sourceFilters)} />
                         </>
                     }

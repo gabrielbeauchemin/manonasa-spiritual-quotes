@@ -3,11 +3,12 @@ import Filter from "./Filter"
 import Quote from './Quote';
 
 const ContentDesktop = (props) => {
+    debugger;
     return (
         <div className="content">
             <div className="filters">
-                <Filter display="Author" values={props.authorFilters} onFilterChange={(authorFilters) => props.updateAuthorFilters(authorFilters)} />
-                <Filter display="Book" values={props.sourceFilters} onFilterChange={(sourceFilters) => props.updateSourceFilters(sourceFilters)} />
+                <Filter display={props.language === "fr" ? "Auteur" : "Author"} values={props.authorFilters} onFilterChange={(authorFilters) => props.updateAuthorFilters(authorFilters)} />
+                <Filter display="Source" values={props.sourceFilters} onFilterChange={(sourceFilters) => props.updateSourceFilters(sourceFilters)} />
             </div>
             <div className="quotes">
                 {props.quotes.map((quote, index) =>
