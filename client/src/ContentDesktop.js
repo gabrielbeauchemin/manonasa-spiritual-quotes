@@ -3,7 +3,6 @@ import Filter from "./Filter"
 import Quote from './Quote';
 
 const ContentDesktop = (props) => {
-    debugger;
     return (
         <div className="content">
             <div className="filters">

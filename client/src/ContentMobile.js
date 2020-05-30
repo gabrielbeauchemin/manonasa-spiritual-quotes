@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Filter from "./Filter"
 import QuoteMobile from './QuoteMobile';
-import backIcon from './icons/back.svg';
+import closeIcon from "./icons/close.svg";
 import plusIcon from './icons/plus.svg';
 
 const ContentMobile = (props) => {
@@ -22,7 +22,7 @@ const ContentMobile = (props) => {
             <div className="contentMobile">
                 <div className="filtersMobile">
                     {contentMobileActivated &&
-                        <input className="desactivateFiltersMobile" title="search" alt="search" type="image" src={backIcon} width="100%" height="100%" onClick={() => disableFilters()} />
+                        <input className="desactivateFiltersMobile" title="search" alt="search" type="image" src={closeIcon} width="100%" height="100%" onClick={() => disableFilters()} />
                     }
                     {contentMobileActivated &&
                         <>
