@@ -8,7 +8,6 @@ class QuotesContent extends React.Component {
     super(props);
     this.state = {
       quotes: [],
-      lastSearchId: "",
       quotesPerFetch: 15,
       quotesFetched: 0,
       allQuotesFetched: false,
@@ -65,7 +64,7 @@ class QuotesContent extends React.Component {
   }
 
   componentDidUpdate(pastProps, pastState) {
-    if (pastProps.searchId !== this.props.searchId) {
+    if (pastProps.searchId !== this.props.searchId || this.props.language !== pastProps.language) {
       this.actualiseQuotes();
     }
   }
@@ -74,7 +73,6 @@ class QuotesContent extends React.Component {
     this.setState(
       {
         quotesFetched: 0,
-        lastSearchId: this.props.searchId,
         allQuotesFetched: false,
         authorFiltersSelected: this.props.isRandomSearch
           ? this.state.authorFiltersSelected
@@ -91,14 +89,14 @@ class QuotesContent extends React.Component {
   }
 
   fetchFilterValues() {
-    fetch(`/authors?q=${this.props.searchQuery}`)
+    fetch(`/authors?q=${this.props.searchQuery}&lang=${this.props.language}`)
       .then((res) => res.json())
       .then((res) => {
         let authors = [];
         res.forEach((x) => authors.push(x.author));
         this.setState({ authorFilters: authors });
       });
-    fetch(`/sources?q=${this.props.searchQuery}`)
+    fetch(`/sources?q=${this.props.searchQuery}&lang=${this.props.language}`)
       .then((res) => res.json())
       .then((res) => {
         let sources = [];
@@ -122,7 +120,8 @@ class QuotesContent extends React.Component {
         sourceFilter +
         `count=${this.state.quotesPerFetch}&` +
         `offset=${this.state.quotesFetched}&` +
-        `random=${this.props.isRandomSearch}`
+        `random=${this.props.isRandomSearch}&` +
+        `lang=${this.props.language}`
     )
       .then((res) => res.json())
       .then((res) => {

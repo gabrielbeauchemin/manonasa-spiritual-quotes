@@ -9,13 +9,15 @@ let getQuotes = function (
   sources,
   searchQueries,
   nbrQuotes,
-  indexBegin
+  indexBegin,
+  lang
 ) {
   const query = `SELECT * FROM SpiritualQuotesSearch 
                 ${formatWhereClause({
                   quote: searchQueries,
                   author: authors,
                   source: sources,
+                  language: [lang],
                 })}
                 LIMIT ${nbrQuotes} OFFSET ${indexBegin}`;
   const stmt = db.prepare(query);
@@ -28,13 +30,15 @@ let getQuotesRandom = function (
   sources,
   searchQueries,
   nbrQuotes,
-  indexBegin
+  indexBegin,
+  lang
 ) {
   const query = `SELECT * FROM SpiritualQuotesSearch 
                 ${formatWhereClause({
                   quote: searchQueries,
                   author: authors,
                   source: sources,
+                  language: [lang],
                 })}
                 ORDER BY random()
                 LIMIT ${nbrQuotes} OFFSET ${indexBegin}`;
@@ -60,17 +64,23 @@ let getRandomQuoteByDay = function () {
   return dailyQuoteCached;
 };
 
-let getAuthors = function (searchQueries) {
+let getAuthors = function (searchQueries, lang) {
   const query = `SELECT DISTINCT author FROM SpiritualQuotesSearch 
-                 ${formatWhereClause({ quote: searchQueries })}`;
+                 ${formatWhereClause({
+                   quote: searchQueries,
+                   language: [lang],
+                 })}`;
   const stmt = db.prepare(query);
   const spiritualQuotes = stmt.all();
   return spiritualQuotes;
 };
 
-let getSources = function (searchQueries) {
+let getSources = function (searchQueries, lang) {
   const query = `SELECT DISTINCT source FROM SpiritualQuotesSearch 
-                ${formatWhereClause({ quote: searchQueries })}`;
+                ${formatWhereClause({
+                  quote: searchQueries,
+                  language: [lang],
+                })}`;
   const stmt = db.prepare(query);
   const spiritualQuotes = stmt.all();
   return spiritualQuotes;
@@ -105,8 +115,25 @@ function removeEmptyFilters(filtersDict) {
 
 function formatFilter(filterName, filterValues) {
   let format = "";
+
+  filterName = filterName.split("'").join("''").split("?").join("");
+
+  if (filterName == "source") {
+    for (i = 0; i < filterValues.length; i++) {
+      filterValues[i] = '"' + filterValues[i].split("'").join("''") + '"';
+    }
+  } else {
+    for (i = 0; i < filterValues.length; i++) {
+      filterValues[i] = filterValues[i]
+        .split("'")
+        .join("''")
+        .split(" ")
+        .join("+");
+    }
+  }
+
   for (i = 0; i < filterValues.length; i++) {
-    format += filterName + ":" + filterValues[i].split(" ").join("+");
+    format += filterName + ":" + filterValues[i];
     if (i < filterValues.length - 1) {
       format += filterName === "quote" ? " AND " : " OR ";
     }

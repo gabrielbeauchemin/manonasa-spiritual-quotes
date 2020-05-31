@@ -5,7 +5,8 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
   let query = req.query.q == null || req.query.q == "" ? null : req.query.q.split(' ');
-  let authors = quotesManager.getAuthors(query);
+  let lang = req.query.lang == null || req.query.lang == "" ? "en" : req.query.lang;
+  let authors = quotesManager.getAuthors(query, lang);
   res.send(authors);
 });
 
