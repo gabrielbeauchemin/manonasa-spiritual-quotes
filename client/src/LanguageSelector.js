@@ -19,7 +19,7 @@ let LanguageSelector = ({ language, updateLanguage }) => {
 
   useEffect(() => {
     updateLanguage(selectedLanguage.value);
-  }, [updateLanguage, selectedLanguage]);
+  }, [updateLanguage, selectedLanguage.value]);
 
   return (
     <div className={LanguageSelectorClass}>

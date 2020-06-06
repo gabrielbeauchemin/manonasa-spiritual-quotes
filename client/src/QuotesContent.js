@@ -15,6 +15,7 @@ class QuotesContent extends React.Component {
       authorFiltersSelected: null,
       sourceFilters: [],
       sourceFiltersSelected: null,
+      sourceFiltersForceSelection: undefined, //in case on language selected, the source needs to keep same filters but in another language
     };
   }
 
@@ -28,6 +29,7 @@ class QuotesContent extends React.Component {
             language={this.props.language}
             authorFilters={this.state.authorFilters}
             sourceFilters={this.state.sourceFilters}
+            sourceFiltersSelected={this.state.sourceFiltersForceSelection}
             allQuotesFetched={this.state.allQuotesFetched}
             updateAuthorFilters={(authorFilters) =>
               this.updateAuthorFilters(authorFilters)
@@ -45,6 +47,7 @@ class QuotesContent extends React.Component {
             language={this.props.language}
             authorFilters={this.state.authorFilters}
             sourceFilters={this.state.sourceFilters}
+            sourceFiltersSelected={this.state.sourceFiltersForceSelection}
             allQuotesFetched={this.state.allQuotesFetched}
             updateAuthorFilters={(authorFilters) =>
               this.updateAuthorFilters(authorFilters)
@@ -60,49 +63,88 @@ class QuotesContent extends React.Component {
   }
 
   componentDidMount() {
-    this.actualiseQuotes();
+    this.actualiseQuotes(SearchQuotesMode.initialize);
   }
 
   componentDidUpdate(pastProps, pastState) {
-    if (pastProps.searchId !== this.props.searchId || this.props.language !== pastProps.language) {
-      this.actualiseQuotes();
+    if (this.props.language !== pastProps.language) {
+      this.actualiseQuotes(SearchQuotesMode.languageChanged);
+    } else if (
+      pastProps.searchId !== this.props.searchId &&
+      this.state.isRandomSearch
+    ) {
+      this.actualiseQuotes(SearchQuotesMode.random);
+    } else if (
+      pastProps.searchId !== this.props.searchId &&
+      !this.state.isRandomSearch
+    ) {
+      this.actualiseQuotes(SearchQuotesMode.search);
     }
   }
 
-  actualiseQuotes() {
-    this.setState(
-      {
-        quotesFetched: 0,
-        allQuotesFetched: false,
-        authorFiltersSelected: this.props.isRandomSearch
-          ? this.state.authorFiltersSelected
-          : null,
-        sourceFiltersSelected: this.props.isRandomSearch
-          ? this.state.sourceFiltersSelected
-          : null,
-      },
-      () => {
-        this.fetchFilterValues();
-        this.fetchQuotes();
-      }
-    );
+  actualiseQuotes(mode) {
+    this.fetchFilterValues(mode, () => this.fetchQuotes());
   }
 
-  fetchFilterValues() {
-    fetch(`/authors?q=${this.props.searchQuery}&lang=${this.props.language}`)
+  fetchFilterValues(mode, callback) {
+    let pastSourceIndexes = [];
+    if (this.state.sourceFiltersSelected) {
+      this.state.sourceFiltersSelected.forEach((filter) => {
+        const foundIndex = this.state.sourceFilters.findIndex(
+          (f) => f === filter
+        );
+        if (foundIndex !== -1) {
+          pastSourceIndexes.push(foundIndex);
+        }
+      });
+    }
+
+    const fetchAuthorFilters = fetch(
+      `/authors?q=${this.props.searchQuery}&lang=${this.props.language}`
+    )
       .then((res) => res.json())
       .then((res) => {
         let authors = [];
         res.forEach((x) => authors.push(x.author));
         this.setState({ authorFilters: authors });
       });
-    fetch(`/sources?q=${this.props.searchQuery}&lang=${this.props.language}`)
+    const fetchSourceFilters = fetch(
+      `/sources?q=${this.props.searchQuery}&lang=${this.props.language}`
+    )
       .then((res) => res.json())
       .then((res) => {
         let sources = [];
         res.forEach((x) => sources.push(x.source));
         this.setState({ sourceFilters: sources });
       });
+
+    Promise.all([fetchAuthorFilters, fetchSourceFilters]).then(() => {
+      let newSourceFilters = [];
+      if (mode === SearchQuotesMode.initialize) {
+        newSourceFilters = this.state.sourceFilters;
+      } else {
+        newSourceFilters.push(this.props.language); //dirty hack to distinguish empty array, hard to refactor
+        pastSourceIndexes.forEach((i) => {
+          if (this.state.sourceFilters.length > i) {
+            newSourceFilters.push(this.state.sourceFilters[i]);
+          }
+        });
+      }
+      
+      this.setState(
+        {
+          quotesFetched: 0,
+          allQuotesFetched: false,
+          authorFiltersSelected: this.state.authorFiltersSelected,         
+          sourceFiltersSelected: newSourceFilters ,
+          sourceFiltersForceSelection: newSourceFilters //when language changes, still select the same filters
+
+        },
+        () => {
+          callback();
+        }
+      );
+    });
   }
 
   fetchQuotes(accumulateQuotes = false) {
@@ -149,6 +191,7 @@ class QuotesContent extends React.Component {
   }
 
   updateAuthorFilters(authorFilters) {
+    debugger;
     this.setState(
       {
         authorFiltersSelected: authorFilters,
@@ -159,6 +202,7 @@ class QuotesContent extends React.Component {
   }
 
   updateSourceFilters(sourceFilters) {
+    debugger;
     this.setState(
       {
         sourceFiltersSelected: sourceFilters,
@@ -168,5 +212,12 @@ class QuotesContent extends React.Component {
     );
   }
 }
+
+const SearchQuotesMode = Object.freeze({
+  initialize: 0,
+  search: 1,
+  random: 2,
+  languageChanged: 3,
+});
 
 export default QuotesContent;

@@ -6,7 +6,7 @@
         "type": "node",
         "request": "launch",
         "name": "Launch API",
-        "program": "${workspaceFolder}\\bin\\www"
+        "program": "${workspaceFolder}/bin/www"
       },
       {
       "name": "Test Api",

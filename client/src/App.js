@@ -20,12 +20,19 @@ function App() {
   const [searchId, setsearchId] = useState(uuidv4());
   const [searchQuery, setSearchQuery] = useState("");
   const [isRandomSearch, setIsRandomSearch] = useState(true);
-  const [language, setLanguage] = useState(undefined);
+  const [language, setLanguage] = useState("en");
 
   function updateSearchQuery(searchQuery, isRandomSearch) {
     setsearchId(uuidv4());
     setSearchQuery(searchQuery);
     setIsRandomSearch(isRandomSearch);
+  }
+
+  function updateLanguage(languageUpdated) {
+    if (languageUpdated !== language) {
+      setIsRandomSearch(false);
+      setLanguage(languageUpdated);
+    }
   }
 
   return (
@@ -37,7 +44,7 @@ function App() {
           component={() => (
             <AboutPage
               updateSearchQuery={updateSearchQuery}
-              updateLanguage={setLanguage}
+              updateLanguage={updateLanguage}
               searchQuery={searchQuery}
               language={language}
             />
@@ -49,7 +56,7 @@ function App() {
           component={() => (
             <DownloadPage
               updateSearchQuery={updateSearchQuery}
-              updateLanguage={setLanguage}
+              updateLanguage={updateLanguage}
               searchQuery={searchQuery}
               language={language}
             />
@@ -61,7 +68,7 @@ function App() {
           component={() => (
             <ContactPage
               updateSearchQuery={updateSearchQuery}
-              updateLanguage={setLanguage}
+              updateLanguage={updateLanguage}
               searchQuery={searchQuery}
               language={language}
             />
@@ -73,7 +80,7 @@ function App() {
           component={() => (
             <DailyQuotePage
               updateSearchQuery={updateSearchQuery}
-              updateLanguage={setLanguage}
+              updateLanguage={updateLanguage}
               searchQuery={searchQuery}
               language={language}
             />
@@ -82,7 +89,7 @@ function App() {
         <Route exact path="/">
           <QuotesPage
             updateSearchQuery={updateSearchQuery}
-            updateLanguage={setLanguage}
+            updateLanguage={updateLanguage}
             searchId={searchId}
             searchQuery={searchQuery}
             isRandomSearch={isRandomSearch}
