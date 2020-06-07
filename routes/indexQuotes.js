@@ -30,7 +30,8 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/daily', function (req, res, next) {
-  res.send(quotesManager.getRandomQuoteByDay());
+  let lang = req.query.lang == null || req.query.lang == "" ? "en" : req.query.lang;
+  res.send(quotesManager.getRandomQuoteByDay(lang));
 });
 
 module.exports = router;

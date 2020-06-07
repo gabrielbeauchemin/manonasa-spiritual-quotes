@@ -59,7 +59,7 @@ const TopNavMenu = (props) => {
           <a href={"./contact?lang=" + props.language}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <img src={contactIcon} alt="" className="menuIcon" />
-              <div>{props.language === "fr" ? "Nous joindre" : "Search"}</div>
+              <div>Contact</div>
             </div>
           </a>
         </li>

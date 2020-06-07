@@ -7,11 +7,11 @@ const DailyQuotePage = (props) => {
   const language = useLanguage(props.language);
   const [quote, setQuote] = useState(undefined);
 
-  async function fetchData() {
-    const res = await fetch("/quotes/daily");
-    return res.json();
-  }
   useEffect(() => {
+    async function fetchData() {
+      const res = await fetch(`/quotes/daily?lang=${props.language}`);
+      return res.json();
+    }
     let isMounted = true;
     fetchData().then((res) => {
       if (isMounted) {
@@ -21,7 +21,7 @@ const DailyQuotePage = (props) => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [props.language]);
   return (
     <>
       <TopNav
@@ -30,7 +30,9 @@ const DailyQuotePage = (props) => {
         language={language}
         keywords={props.searchQuery}
       />
-      <div className="pageTitle">{props.language === "fr" ? "Citation de la journée" : "Daily quote"}</div>
+      <div className={props.language === "fr" ? "pageTitleLarge" : "pageTitle"}>
+        {props.language === "fr" ? "Citation de la journée" : "Daily quote"}
+      </div>
       <br />
       <br />
       {quote !== undefined && (

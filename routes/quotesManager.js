@@ -47,22 +47,47 @@ let getQuotesRandom = function (
   return spiritualQuotes;
 };
 
-let dailyQuoteCached = undefined;
+let dailyQuoteCachedEn = undefined;
+let dailyQuoteCachedFr = undefined;
 let dailyQuote = undefined;
-let getRandomQuoteByDay = function () {
+let getRandomQuoteByDay = function (language) {
   let today = new Date().toISOString().slice(0, 10);
   if (dailyQuote == undefined || dailyQuote !== today) {
-    const query = `SELECT * FROM SpiritualQuotesSearch 
+    const queryEn = `SELECT * FROM SpiritualQuotesSearch
+    WHERE language='en' 
     ORDER BY random()
     LIMIT 1`;
-    const stmt = db.prepare(query);
-    const spiritualQuote = stmt.get();
+    const stmtEn = db.prepare(queryEn);
+    const spiritualQuoteEn = stmtEn.get();
+    dailyQuoteCachedEn = spiritualQuoteEn;
+    //match the same quote in fr if possible
+    const queryFr = `SELECT * FROM SpiritualQuotesSearch 
+    WHERE language='fr' AND author='${spiritualQuoteEn.author}' AND source='${sourceEnToFr(spiritualQuoteEn.source).replace("'","''")}' AND number='${spiritualQuoteEn.number}'
+    LIMIT 1`;
+    const stmtFr = db.prepare(queryFr);
+    const SpiritualQuoteFr = stmtFr.get();
+    dailyQuoteCachedFr = SpiritualQuoteFr;
+
     dailyQuote = today;
-    dailyQuoteCached = spiritualQuote;
-    return spiritualQuote;
+    return language === "fr" ? SpiritualQuoteFr : spiritualQuoteEn;
   }
-  return dailyQuoteCached;
+  return language === "fr" ? dailyQuoteCachedFr : dailyQuoteCachedEn;
 };
+
+function sourceEnToFr(sourceEn){
+  if(sourceEn === "How to practise Self-inquiery"){
+    return "Comment pratiquer l'investigation du Soi";
+  }
+  else if (sourceEn === "The Seven Steps to Awakening"){
+    return "Les Sept Étapes Pour S'Éveiller"
+  }
+  else if (sourceEn === "Who am I?"){
+    return "Qui suis-je?"
+  }
+  else{
+    throw "Can't map unknown source";
+  }
+}
 
 let getAuthors = function (searchQueries, lang) {
   const query = `SELECT DISTINCT author FROM SpiritualQuotesSearch 

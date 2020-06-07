@@ -495,7 +495,7 @@ body {
 }
 
 @media screen and (min-width: 1301px) {
-  .pageTitleDownload{
+  .pageTitleLarge{
     font-size: 3em;
     font-weight: bold;
     margin: 0 auto;
@@ -503,15 +503,15 @@ body {
   }
 }
 @media screen and (max-width: 1300px) {
-  .pageTitleDownload{
+  .pageTitleLarge{
     font-size: 2.8em;
     font-weight: bold;
     margin: 0 auto;
-    width: 35%;
+    width: 28%;
   }
 }
 @media screen and (max-width: 800px) {
-  .pageTitleDownload{
+  .pageTitleLarge{
     font-size: 2.4em;
     font-weight: bold;
     margin: 0 auto;
@@ -519,7 +519,7 @@ body {
   }
 }
 @media screen and (max-width: 600px) {
-  .pageTitleDownload{
+  .pageTitleLarge{
     font-size: 1.5em;
     font-weight: bold;
     margin: 0 auto;
@@ -527,7 +527,7 @@ body {
   }
 }
 @media screen and (max-width: 400px) {
-  .pageTitleDownload{
+  .pageTitleLarge{
     font-size: 1.5em;
     font-weight: bold;
     margin: 0 auto;
