@@ -17,6 +17,7 @@ class Quote extends React.Component {
           bottom: "0%",
           marginRight: "-50%",
           transform: "translate(-50%, -50%)",
+          fontSize: "1.25em"
         },
       },
     };

@@ -55,7 +55,6 @@ class Filter extends React.Component {
       this.setState({
         filters: newFilters,
       });
-      debugger;
       this.props.onFilterChange(this.getCheckedFiltersName(newFilters));
     }
   }

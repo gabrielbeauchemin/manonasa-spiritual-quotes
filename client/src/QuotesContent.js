@@ -191,7 +191,6 @@ class QuotesContent extends React.Component {
   }
 
   updateAuthorFilters(authorFilters) {
-    debugger;
     this.setState(
       {
         authorFiltersSelected: authorFilters,
@@ -202,7 +201,6 @@ class QuotesContent extends React.Component {
   }
 
   updateSourceFilters(sourceFilters) {
-    debugger;
     this.setState(
       {
         sourceFiltersSelected: sourceFilters,

@@ -20,7 +20,7 @@ function App() {
   const [searchId, setsearchId] = useState(uuidv4());
   const [searchQuery, setSearchQuery] = useState("");
   const [isRandomSearch, setIsRandomSearch] = useState(true);
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState(undefined);
 
   function updateSearchQuery(searchQuery, isRandomSearch) {
     setsearchId(uuidv4());

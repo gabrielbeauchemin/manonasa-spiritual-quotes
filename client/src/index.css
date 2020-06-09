@@ -1,8 +1,7 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-    height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  height: 100vh;
 }
 
 @media screen and (min-width: 2000px) {
@@ -17,9 +16,8 @@ body {
   }
 }
 
-
 /* layout that contain the following elements: menu, searchBox, languageToggle, filters*/
-.topNavDesktop{
+.topNavDesktop {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
@@ -27,7 +25,7 @@ body {
   padding: 1vh 0 4vh 0;
 }
 
-.topNavBigScreen{
+.topNavBigScreen {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
@@ -35,15 +33,15 @@ body {
   padding: 1vh 0 4vh 0;
 }
 
-.topNavMobile{
+.topNavMobile {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
   height: 30px;
-  padding: 1vh 0 1vh 0;
+  padding: 1vh 0 2vh 0;
 }
 
-.topNavMobileSearchActivated{
+.topNavMobileSearchActivated {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
@@ -77,9 +75,10 @@ body {
   background: inherit;
   margin: 0;
   margin-top: 0em;
-  transition: margin-top 0.7s;  
+  transition: margin-top 0.7s;
   border-radius: 5px;
-  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
   left: 0;
   width: 15%;
   color: inherit;
@@ -92,22 +91,23 @@ body {
   opacity: 0;
 }
 .menu ul:before {
-  content: '';
+  content: "";
   width: 0.75em;
   height: 0.75em;
   background: inherit;
   position: absolute;
   top: -0.375em;
-  left: calc(56px / 2 - .375em);
+  left: calc(56px / 2 - 0.375em);
   transform: rotate(45deg);
   border-radius: 5px;
-  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
   border-style: solid;
-  border-color: rgba(0, 0, 0, .2);
+  border-color: rgba(0, 0, 0, 0.2);
   border-width: 1px;
   z-index: -1;
 }
-.menu .menuIcon{
+.menu .menuIcon {
   height: 17%;
   width: 17%;
   margin-right: 5px;
@@ -132,9 +132,10 @@ body {
   background: inherit;
   margin: 0;
   margin-top: 0em;
-  transition: margin-top 0.7s;  
+  transition: margin-top 0.7s;
   border-radius: 5px;
-  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
   left: 0;
   width: 30%;
   color: inherit;
@@ -147,22 +148,23 @@ body {
   opacity: 0;
 }
 .menuMobile ul:before {
-  content: '';
+  content: "";
   width: 0.75em;
   height: 0.75em;
   background: inherit;
   position: absolute;
   top: -0.375em;
-  left: calc(56px / 2 - .375em);
+  left: calc(56px / 2 - 0.375em);
   transform: rotate(45deg);
   border-radius: 5px;
-  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
   border-style: solid;
-  border-color: rgba(0, 0, 0, .2);
+  border-color: rgba(0, 0, 0, 0.2);
   border-width: 1px;
   z-index: -1;
 }
-.menuMobile .menuIcon{
+.menuMobile .menuIcon {
   height: 17%;
   width: 17%;
   margin-right: 5px;
@@ -198,21 +200,21 @@ body {
   height: 100%;
 }
 
-.searchBox input[type=text]{
+.searchBox input[type="text"] {
   flex: 13;
   border-radius: 4px;
   border-color: black;
   font-size: 1.1em;
 }
 
-.searchBoxMobile input[type=text]{
+.searchBoxMobile input[type="text"] {
   flex: 10;
   border-radius: 4px;
   border-color: black;
   font-size: 1.1em;
 }
 
-.searchIcon{
+.searchIcon {
   min-width: 20px;
   border-radius: 5px;
   cursor: pointer;
@@ -221,76 +223,75 @@ body {
   margin-left: 1px;
 }
 
-.searchBoxToggle{
+.searchBoxToggle {
   width: 7%;
 }
 
-.desactivateSearchIcon{
+.desactivateSearchIcon {
   width: 5%;
   padding: 1vh 0 4vh 0;
 }
 
-.languagesSelector{
+.languagesSelector {
   width: 70px;
 }
-.languagesSelectorBigScreen{
+.languagesSelectorBigScreen {
   width: 170px;
 }
 /* End Search box */
 /* End Layout */
 
 /* Begin content */
-.content{
+.content {
   display: flex;
   flex-wrap: nowrap;
   padding-top: 5px;
 }
-.contentMobile{
+.contentMobile {
   display: flex;
   flex-wrap: nowrap;
   padding-top: 11px;
   flex-direction: column;
 }
 
-.filters{
+.filters {
   width: 18%;
   margin-right: 10px;
   margin-left: -30px;
 }
-.filtersMobile{
+.filtersMobile {
   width: 100%;
   display: flex;
 }
 
-.toggleFiltersMobile{
+.toggleFiltersMobile {
   width: 3.5%;
   margin-left: 5px;
   cursor: pointer;
-
 }
 
-.desactivateFiltersMobile{
+.desactivateFiltersMobile {
   width: 5%;
   padding: 1vh 0 4vh 0;
 }
 
-.filtersLabelMobile{
+.filtersLabelMobile {
   display: flex;
   padding: 16px 0 10px 0;
 }
 
-.filter{
+.filter {
   width: auto;
 }
-.filterCategory{
+.filterCategory {
   width: auto;
   font-weight: bold;
   font-size: 1.1em;
 }
-.filterValues{
+.filterValues {
   width: auto;
 }
-.filterValue{
+.filterValue {
   display: block;
   white-space: nowrap;
   overflow: hidden;
@@ -298,12 +299,12 @@ body {
   width: auto;
 }
 
-.quotes{
+.quotes {
   display: flex;
   flex-direction: column;
   width: auto;
 }
-.quote{
+.quote {
   width: auto;
   border-radius: 3px;
   margin-bottom: 20px;
@@ -311,7 +312,7 @@ body {
   font-size: 1.4em;
 }
 
-.dailyQuote{
+.dailyQuote {
   width: 50%;
   margin: auto;
   text-align: center;
@@ -321,7 +322,7 @@ body {
   font-size: 2em;
 }
 
-.quoteButton{
+.quoteButton {
   width: 5%;
   border-radius: 3px;
   align-self: center;
@@ -330,33 +331,35 @@ body {
   margin-bottom: 5px;
 }
 
-.quoteButtonMobile{
-  width: 10%;
-  border-radius: 3px;
-  align-self: center;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 5px;
+@media screen and (max-width: 600px) {
+  .quoteButton {
+    width: 23%;
+    border-radius: 3px;
+    align-self: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
 }
 
-.quoteIcon{
+.quoteIcon {
   max-width: "100%";
-  max-height:"100%";
+  max-height: "100%";
   height: 20px;
   width: auto;
 }
-.moreQuoteButton{
+.moreQuoteButton {
   border-radius: 3px;
   align-self: center;
   margin-bottom: 20px;
 }
 
-.moreQuoteFields{
+.moreQuoteFields {
   display: flex;
   flex-direction: column;
 }
 
-.moreQuoteField{
+.moreQuoteField {
   display: flex;
   align-items: baseline;
   margin-bottom: -20px;
@@ -367,11 +370,11 @@ body {
   transition: opacity 250ms ease-in-out;
 }
 
-.ReactModal__Overlay--after-open{
+.ReactModal__Overlay--after-open {
   opacity: 1;
 }
 
-.ReactModal__Overlay--before-close{
+.ReactModal__Overlay--before-close {
   opacity: 0;
 }
 
@@ -386,10 +389,11 @@ body {
 .close:hover {
   opacity: 1;
 }
-.close:before, .close:after {
+.close:before,
+.close:after {
   position: absolute;
   left: 15px;
-  content: ' ';
+  content: " ";
   height: 33px;
   width: 2px;
   background-color: #000000;
@@ -415,7 +419,8 @@ body {
   bottom: 30px;
   font-size: 1rem;
   border-radius: 3px;
-  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
   border-width: 1px;
   border-color: lightgray;
   border-style: solid;
@@ -425,36 +430,60 @@ body {
   visibility: visible; /* Show the snackbar */
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
  However, delay the fade out process for 2.5 seconds */
- -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
- animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;} 
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;} 
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
-} 
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
 
 /* End content */
 
 /* Begin Pages */
 @media screen and (min-width: 1301px) {
-  .pageTitle{
+  .pageTitle {
     font-size: 3em;
     font-weight: bold;
     margin: 0 auto;
@@ -462,7 +491,7 @@ body {
   }
 }
 @media screen and (max-width: 1300px) {
-  .pageTitle{
+  .pageTitle {
     font-size: 2.8em;
     font-weight: bold;
     margin: 0 auto;
@@ -470,7 +499,7 @@ body {
   }
 }
 @media screen and (max-width: 800px) {
-  .pageTitle{
+  .pageTitle {
     font-size: 2.4em;
     font-weight: bold;
     margin: 0 auto;
@@ -478,7 +507,7 @@ body {
   }
 }
 @media screen and (max-width: 600px) {
-  .pageTitle{
+  .pageTitle {
     font-size: 2em;
     font-weight: bold;
     margin: 0 auto;
@@ -486,16 +515,16 @@ body {
   }
 }
 @media screen and (max-width: 400px) {
-  .pageTitle{
+  .pageTitle {
     font-size: 2em;
     font-weight: bold;
     margin: 0 auto;
-    width: 20%;
+    width: 34%;
   }
 }
 
 @media screen and (min-width: 1301px) {
-  .pageTitleLarge{
+  .pageTitleLarge {
     font-size: 3em;
     font-weight: bold;
     margin: 0 auto;
@@ -503,7 +532,7 @@ body {
   }
 }
 @media screen and (max-width: 1300px) {
-  .pageTitleLarge{
+  .pageTitleLarge {
     font-size: 2.8em;
     font-weight: bold;
     margin: 0 auto;
@@ -511,7 +540,7 @@ body {
   }
 }
 @media screen and (max-width: 800px) {
-  .pageTitleLarge{
+  .pageTitleLarge {
     font-size: 2.4em;
     font-weight: bold;
     margin: 0 auto;
@@ -519,7 +548,7 @@ body {
   }
 }
 @media screen and (max-width: 600px) {
-  .pageTitleLarge{
+  .pageTitleLarge {
     font-size: 1.5em;
     font-weight: bold;
     margin: 0 auto;
@@ -527,7 +556,7 @@ body {
   }
 }
 @media screen and (max-width: 400px) {
-  .pageTitleLarge{
+  .pageTitleLarge {
     font-size: 1.5em;
     font-weight: bold;
     margin: 0 auto;
@@ -536,34 +565,31 @@ body {
 }
 
 @media screen and (min-width: 1301px) {
-  .pageParagraph{
+  .pageParagraph {
     font-size: 2em;
     margin: 0 auto;
     width: 80%;
   }
 }
 @media screen and (max-width: 1300px) {
-  .pageParagraph{
+  .pageParagraph {
     font-size: 1.8em;
     margin: 0 auto;
     width: 80%;
   }
 }
 @media screen and (max-width: 800px) {
-  .pageParagraph{
+  .pageParagraph {
     font-size: 1.8em;
     margin: 0 auto;
     width: 80%;
   }
 }
 @media screen and (max-width: 600px) {
-  .pageParagraph{
+  .pageParagraph {
     font-size: 1.5em;
     margin: 0 auto;
     width: 80%;
   }
 }
 /*End Pages */
-
-
-
