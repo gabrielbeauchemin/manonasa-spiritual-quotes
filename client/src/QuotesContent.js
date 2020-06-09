@@ -169,7 +169,7 @@ class QuotesContent extends React.Component {
       .then((res) => {
         if (accumulateQuotes) {
           this.setState({
-            quotes: res.concat(this.state.quotes),
+            quotes: this.state.quotes.concat(res),
             quotesReady: true,
             allQuotesFetched: res.length < this.state.quotesPerFetch,
           });

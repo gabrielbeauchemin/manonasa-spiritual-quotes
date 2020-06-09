@@ -17,6 +17,7 @@ class Quote extends React.Component {
           bottom: "0%",
           marginRight: "-50%",
           transform: "translate(-50%, -50%)",
+          fontSize: "1.5em"
         },
       },
     };
@@ -100,7 +101,7 @@ class Quote extends React.Component {
                         : "Unknown"}
                     </p>
                   </div>
-                  {this.props.chapter !== undefined && (
+                  {this.props.chapter && (
                     <div className="moreQuoteField">
                       <b>
                         {this.props.language === "fr" ? "Chapitre" : "Chapter"}
@@ -109,7 +110,7 @@ class Quote extends React.Component {
                       <p>{this.props.chapter}</p>
                     </div>
                   )}
-                  {this.props.number !== undefined && (
+                  {this.props.number && (
                     <div className="moreQuoteField">
                       <b>
                         {this.props.language === "fr" ? "Numéro" : "Number"}
