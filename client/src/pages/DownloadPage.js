@@ -21,7 +21,7 @@ const DownloadPage = (props) => {
         </div>
         <br />
         <div className="pageParagraph">
-          <a href="test.com">Téléchargez les citations</a>
+          <a target="_blank" rel="noopener noreferrer" href="https://u.pcloud.link/publink/show?code=kZgfTEkZvXSH3AYc4m5gnKxmqtxKu7vYe14X">Téléchargez les citations</a>
         </div>
       </>
     );
@@ -42,7 +42,7 @@ const DownloadPage = (props) => {
         </div>
         <br />
         <div className="pageParagraph">
-          <a href="test.com">Download all quotes</a>
+          <a target="_blank" rel="noopener noreferrer" href="https://u.pcloud.link/publink/show?code=kZgfTEkZvXSH3AYc4m5gnKxmqtxKu7vYe14X">Download all quotes</a>
         </div>
       </>
     );
