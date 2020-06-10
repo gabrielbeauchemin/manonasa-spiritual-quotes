@@ -65,8 +65,8 @@ const TopNavSearchBox = (props) => {
           className="searchIcon"
           title={
             props.language === "fr"
-              ? "Chercher aléatoirement"
-              : "Search randomly"
+              ? "Recherche de citations aléatoires"
+              : "Search of random quotes"
           }
           alt="search randomly"
           type="image"
@@ -76,7 +76,7 @@ const TopNavSearchBox = (props) => {
           onClick={() => {
             setIsRandomSearch(true);
             snackbarRef.current.openSnackBar(
-              props.language === "fr" ? "Recherche aléatoire" : "Random Search"
+              props.language === "fr" ? "Recherche de citations aléatoires" : "Search of random quotes"
             );
           }}
         />
