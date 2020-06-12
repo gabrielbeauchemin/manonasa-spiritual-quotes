@@ -1,15 +1,25 @@
 import React from "react";
 import TopNav from "../TopNav";
 import { useLanguage } from "../hooks/useLanguage";
+import { useHistory } from "react-router-dom";
 
 const AboutPage = (props) => {
   let language = useLanguage(props.language);
+  let history = useHistory();
+  function updateLanguageQueryParam(lang) {
+    history.push(`/about?lang=${lang}`);
+  }
   if (language === "fr") {
     return (
       <>
         <TopNav
           updateSearchQuery={props.updateSearchQuery}
-          updateLanguage={props.updateLanguage}
+          updateLanguage={(lang) => {
+            if (lang !== props.language) {
+              updateLanguageQueryParam(lang);
+              props.updateLanguage(lang);
+            }
+          }}
           language={language}
           keywords={props.searchQuery}
         />
@@ -40,7 +50,12 @@ const AboutPage = (props) => {
       <>
         <TopNav
           updateSearchQuery={props.updateSearchQuery}
-          updateLanguage={props.updateLanguage}
+          updateLanguage={(lang) => {
+            if (lang !== props.language) {
+              updateLanguageQueryParam(lang);
+              props.updateLanguage(lang);
+            }
+          }}
           language={language}
           keywords={props.searchQuery}
         />

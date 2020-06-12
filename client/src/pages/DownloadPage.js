@@ -1,15 +1,26 @@
 import React from "react";
 import TopNav from "../TopNav";
 import { useLanguage } from "../hooks/useLanguage";
+import { useHistory } from "react-router-dom";
 
 const DownloadPage = (props) => {
   let language = useLanguage(props.language);
+  let history = useHistory();
+  function updateLanguageQueryParam(lang) {
+    history.push(`/download?lang=${lang}`);
+  }
+
   if (language === "fr") {
     return (
       <>
         <TopNav
           updateSearchQuery={props.updateSearchQuery}
-          updateLanguage={props.updateLanguage}
+          updateLanguage={(lang) => {
+            if (lang !== props.language) {
+              updateLanguageQueryParam(lang);
+              props.updateLanguage(lang);
+            }
+          }}
           language={language}
           keywords={props.searchQuery}
         />
@@ -21,7 +32,13 @@ const DownloadPage = (props) => {
         </div>
         <br />
         <div className="pageParagraph">
-          <a target="_blank" rel="noopener noreferrer" href="https://u.pcloud.link/publink/show?code=kZgfTEkZvXSH3AYc4m5gnKxmqtxKu7vYe14X">Téléchargez les citations</a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://u.pcloud.link/publink/show?code=kZgfTEkZvXSH3AYc4m5gnKxmqtxKu7vYe14X"
+          >
+            Téléchargez les citations
+          </a>
         </div>
       </>
     );
@@ -30,7 +47,12 @@ const DownloadPage = (props) => {
       <>
         <TopNav
           updateSearchQuery={props.updateSearchQuery}
-          updateLanguage={props.updateLanguage}
+          updateLanguage={(lang) => {
+            if (lang !== props.language) {
+              updateLanguageQueryParam(lang);
+              props.updateLanguage(lang);
+            }
+          }}
           language={language}
           keywords={props.searchQuery}
         />
@@ -42,7 +64,13 @@ const DownloadPage = (props) => {
         </div>
         <br />
         <div className="pageParagraph">
-          <a target="_blank" rel="noopener noreferrer" href="https://u.pcloud.link/publink/show?code=kZgfTEkZvXSH3AYc4m5gnKxmqtxKu7vYe14X">Download all quotes</a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://u.pcloud.link/publink/show?code=kZgfTEkZvXSH3AYc4m5gnKxmqtxKu7vYe14X"
+          >
+            Download all quotes
+          </a>
         </div>
       </>
     );

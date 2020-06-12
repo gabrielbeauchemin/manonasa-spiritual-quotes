@@ -2,10 +2,15 @@ import React, { useState, useEffect } from "react";
 import TopNav from "../TopNav";
 import DailyQuote from "../DailyQuote";
 import { useLanguage } from "../hooks/useLanguage";
+import { useHistory } from "react-router-dom";
 
 const DailyQuotePage = (props) => {
   const language = useLanguage(props.language);
   const [quote, setQuote] = useState(undefined);
+  let history = useHistory();
+  function updateLanguageQueryParam(lang) {
+    history.push(`/dailyQuote?lang=${lang}`);
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -26,7 +31,12 @@ const DailyQuotePage = (props) => {
     <>
       <TopNav
         updateSearchQuery={props.updateSearchQuery}
-        updateLanguage={props.updateLanguage}
+        updateLanguage={(lang) => {
+          if (lang !== props.language) {
+            updateLanguageQueryParam(lang);
+            props.updateLanguage(lang);
+          }
+        }}
         language={language}
         keywords={props.searchQuery}
       />
