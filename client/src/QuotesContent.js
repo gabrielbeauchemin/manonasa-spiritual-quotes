@@ -15,7 +15,6 @@ class QuotesContent extends React.Component {
       authorFiltersSelected: null,
       sourceFilters: [],
       sourceFiltersSelected: null,
-      sourceFiltersForceSelection: undefined, //in case on language selected, the source needs to keep same filters but in another language
     };
   }
 
@@ -29,7 +28,6 @@ class QuotesContent extends React.Component {
             language={this.props.language}
             authorFilters={this.state.authorFilters}
             sourceFilters={this.state.sourceFilters}
-            sourceFiltersSelected={this.state.sourceFiltersForceSelection}
             allQuotesFetched={this.state.allQuotesFetched}
             updateAuthorFilters={(authorFilters) =>
               this.updateAuthorFilters(authorFilters)
@@ -47,7 +45,6 @@ class QuotesContent extends React.Component {
             language={this.props.language}
             authorFilters={this.state.authorFilters}
             sourceFilters={this.state.sourceFilters}
-            sourceFiltersSelected={this.state.sourceFiltersForceSelection}
             allQuotesFetched={this.state.allQuotesFetched}
             updateAuthorFilters={(authorFilters) =>
               this.updateAuthorFilters(authorFilters)
@@ -87,18 +84,6 @@ class QuotesContent extends React.Component {
   }
 
   fetchFilterValues(mode, callback) {
-    let pastSourceIndexes = [];
-    if (this.state.sourceFiltersSelected) {
-      this.state.sourceFiltersSelected.forEach((filter) => {
-        const foundIndex = this.state.sourceFilters.findIndex(
-          (f) => f === filter
-        );
-        if (foundIndex !== -1) {
-          pastSourceIndexes.push(foundIndex);
-        }
-      });
-    }
-
     const fetchAuthorFilters = fetch(
       `/authors?q=${this.props.searchQuery}&lang=${this.props.language}`
     )
@@ -119,30 +104,20 @@ class QuotesContent extends React.Component {
       });
 
     Promise.all([fetchAuthorFilters, fetchSourceFilters]).then(() => {
-      let newSourceFilters = [];
-      if (mode === SearchQuotesMode.initialize) {
-        newSourceFilters = this.state.sourceFilters;
-      } else {
-        newSourceFilters.push(this.props.language); //dirty hack to distinguish empty array, hard to refactor
-        pastSourceIndexes.forEach((i) => {
-          if (this.state.sourceFilters.length > i) {
-            newSourceFilters.push(this.state.sourceFilters[i]);
-          }
-        });
-      }
-      
       this.setState(
         {
           quotesFetched: 0,
           allQuotesFetched: false,
-          authorFiltersSelected: this.state.authorFiltersSelected,         
-          sourceFiltersSelected: newSourceFilters ,
-          sourceFiltersForceSelection: newSourceFilters //when language changes, still select the same filters
-
+          authorFiltersSelected:
+            mode === SearchQuotesMode.languageChanged
+              ? null
+              : this.state.authorFiltersSelected,
+          sourceFiltersSelected:
+            mode === SearchQuotesMode.languageChanged
+              ? null
+              : this.state.sourceFilters,
         },
-        () => {
-          callback();
-        }
+        callback
       );
     });
   }

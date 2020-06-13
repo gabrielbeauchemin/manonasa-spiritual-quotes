@@ -9,6 +9,7 @@ const ContentDesktop = (props) => {
         <Filter
           display={props.language === "fr" ? "Auteur" : "Author"}
           values={props.authorFilters}
+          language={props.language}
           onFilterChange={(authorFilters) =>
             props.updateAuthorFilters(authorFilters)
           }
@@ -16,6 +17,7 @@ const ContentDesktop = (props) => {
         <Filter
           display="Source"
           values={props.sourceFilters}
+          language={props.language}
           selectedValues={props.sourceFiltersSelected}
           onFilterChange={(sourceFilters) =>
             props.updateSourceFilters(sourceFilters)

@@ -62,6 +62,7 @@ const ContentMobile = (props) => {
             <Filter
               display={props.language === "fr" ? "Auteur" : "Author"}
               values={props.authorFilters}
+              language={props.language}
               onFilterChange={(authorFilters) => {
                 props.updateAuthorFilters(authorFilters);
                 setNbrAuthorFiltersOn(authorFilters.length);
@@ -70,6 +71,7 @@ const ContentMobile = (props) => {
             <Filter
               display="Book"
               values={props.sourceFilters}
+              language={props.language}
               selectedValues={props.sourceFiltersSelected}
               onFilterChange={(sourceFilters) => {
                 props.updateSourceFilters(sourceFilters);

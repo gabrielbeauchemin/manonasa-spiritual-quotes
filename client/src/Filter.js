@@ -48,9 +48,12 @@ class Filter extends React.Component {
       });
       this.props.onFilterChange(this.getCheckedFiltersName(newFilters));
     }
-
+    //debugger;
     //the values changed, so we need to reset the checked filtrer to all values
-    if (!this.arraysEqual(pastProps.values, this.props.values)) {
+    if (
+      !this.arraysEqual(pastProps.values, this.props.values) ||
+      pastProps.language !== this.props.language
+    ) {
       let newFilters = this.initializeFilters();
       this.setState({
         filters: newFilters,
