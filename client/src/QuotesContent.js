@@ -102,7 +102,7 @@ class QuotesContent extends React.Component {
         res.forEach((x) => sources.push(x.source));
         this.setState({ sourceFilters: sources });
       });
-
+    debugger;
     Promise.all([fetchAuthorFilters, fetchSourceFilters]).then(() => {
       this.setState(
         {
@@ -115,7 +115,7 @@ class QuotesContent extends React.Component {
           sourceFiltersSelected:
             mode === SearchQuotesMode.languageChanged
               ? null
-              : this.state.sourceFilters,
+              : this.state.sourceFiltersSelected,
         },
         callback
       );
