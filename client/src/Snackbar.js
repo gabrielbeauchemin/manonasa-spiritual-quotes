@@ -15,7 +15,7 @@ export class Snackbar extends React.Component {
         this.setState({ isActive: true }, () => {
             setTimeout(() => {
                 this.setState({ isActive: false });
-            }, 3000);
+            }, 4000);
         });
     }
 

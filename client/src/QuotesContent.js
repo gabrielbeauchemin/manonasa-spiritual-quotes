@@ -102,7 +102,7 @@ class QuotesContent extends React.Component {
         res.forEach((x) => sources.push(x.source));
         this.setState({ sourceFilters: sources });
       });
-    debugger;
+      
     Promise.all([fetchAuthorFilters, fetchSourceFilters]).then(() => {
       this.setState(
         {
