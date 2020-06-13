@@ -5,7 +5,7 @@ import { useLanguage } from "../hooks/useLanguage";
 import { useHistory } from "react-router-dom";
 
 const DailyQuotePage = (props) => {
-  const language = useLanguage(props.language);
+  const language = useLanguage();
   const [quote, setQuote] = useState(undefined);
   let history = useHistory();
   function updateLanguageQueryParam(lang) {
@@ -40,7 +40,7 @@ const DailyQuotePage = (props) => {
         language={language}
         keywords={props.searchQuery}
       />
-      <div className={props.language === "fr" ? "pageTitleLarge" : "pageTitle"}>
+      <div className={"pageTitle"}>
         {props.language === "fr" ? "Citation de la journée" : "Daily quote"}
       </div>
       <br />

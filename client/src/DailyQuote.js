@@ -107,7 +107,7 @@ class Quote extends React.Component {
   //reference: https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
   copyQuote(quote) {
     this.copyToClipBoard(quote);
-    this.snackbarRef.current.openSnackBar("Copied!");
+    this.snackbarRef.current.openSnackBar(this.props.language === "fr" ? "Copié!" : "Copied!");
   }
 
   copyToClipBoard(quote) {

@@ -38,7 +38,7 @@ class QuoteMobile extends React.Component {
             <button
               type="button"
               title={this.props.language === "fr" ? "Copier" : "Copy"}
-              className="quoteButtonMobile"
+              className="quoteButton"
               onClick={(e) =>
                 this.copyQuote(this.props.quote + " -" + this.props.author)
               }
@@ -53,7 +53,7 @@ class QuoteMobile extends React.Component {
                   ? "Plus d'information sur la citation"
                   : "See more information about the quote"
               }
-              className="quoteButtonMobile"
+              className="quoteButton"
               onMouseDown={this.openModal}
             >
               <Modal

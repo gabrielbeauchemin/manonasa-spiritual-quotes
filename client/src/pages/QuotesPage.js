@@ -5,7 +5,7 @@ import { useLanguage } from "../hooks/useLanguage";
 import { useHistory } from "react-router-dom";
 
 const QuotesPage = (props) => {
-  let language = useLanguage(props.language);
+  let language = useLanguage();
   let history = useHistory();
   function updateLanguageQueryParam(lang) {
     history.push(`/?lang=${lang}`);

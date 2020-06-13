@@ -4,7 +4,7 @@ import { useLanguage } from "../hooks/useLanguage";
 import { useHistory } from "react-router-dom";
 
 const DownloadPage = (props) => {
-  let language = useLanguage(props.language);
+  let language = useLanguage();
   let history = useHistory();
   function updateLanguageQueryParam(lang) {
     history.push(`/download?lang=${lang}`);
@@ -24,7 +24,7 @@ const DownloadPage = (props) => {
           language={language}
           keywords={props.searchQuery}
         />
-        <div className="pageTitleLarge">Téléchargez les citations</div>
+        <div className="pageTitle">Téléchargez les citations</div>
         <br />
         <div className="pageParagraph">
           Toutes les citations de ce portail peuvent être téléchargées en simple
@@ -56,7 +56,7 @@ const DownloadPage = (props) => {
           language={language}
           keywords={props.searchQuery}
         />
-        <div className="pageTitleLarge">Download all quotes</div>
+        <div className="pageTitle">Download all quotes</div>
         <br />
         <div className="pageParagraph">
           All the quotes of this portal can be downloaded in simple text format

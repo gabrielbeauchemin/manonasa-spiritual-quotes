@@ -312,18 +312,43 @@ body {
   font-size: 1.4em;
 }
 
-.dailyQuote {
-  width: 50%;
-  margin: auto;
-  text-align: center;
-  border-radius: 3px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
-  font-size: 2em;
+@media screen and (min-width: 801px) {
+  .dailyQuote {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+    font-size: 1.8em;
+  }
+}
+@media screen and (max-width: 800px) {
+  .dailyQuote {
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+    font-size: 1.5em;
+  }
+}
+@media screen and (max-width: 499px) {
+  .dailyQuote {
+    width: 95%;
+    margin: auto;
+    text-align: center;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+    font-size: 1.5em;
+  }
 }
 
+
 .quoteButton {
-  width: 5%;
+  width: 7%;
   border-radius: 3px;
   align-self: center;
   margin-left: 5px;
@@ -344,7 +369,7 @@ body {
 
 @media screen and (max-width: 600px) {
   .quoteButton {
-    width: 23%;
+    width: 11.5%;
     border-radius: 3px;
     align-self: center;
     margin-left: 5px;
@@ -513,86 +538,22 @@ body {
 
 /* End content */
 
-/* Begin Pages */
-@media screen and (min-width: 1301px) {
+@media screen and (min-width: 1200px) {
   .pageTitle {
-    font-size: 3em;
+    font-size: 2.5em;
     font-weight: bold;
     margin: 0 auto;
-    width: 15%;
+    width: 80%;
+    text-align: center;
   }
 }
-@media screen and (max-width: 1300px) {
-  .pageTitle {
-    font-size: 2.8em;
-    font-weight: bold;
-    margin: 0 auto;
-    width: 14%;
-  }
-}
-@media screen and (max-width: 800px) {
-  .pageTitle {
-    font-size: 2.4em;
-    font-weight: bold;
-    margin: 0 auto;
-    width: 20%;
-  }
-}
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1199px) {
   .pageTitle {
     font-size: 2em;
     font-weight: bold;
     margin: 0 auto;
-    width: 28%;
-  }
-}
-@media screen and (max-width: 400px) {
-  .pageTitle {
-    font-size: 2em;
-    font-weight: bold;
-    margin: 0 auto;
-    width: 34%;
-  }
-}
-
-@media screen and (min-width: 1301px) {
-  .pageTitleLarge {
-    font-size: 3em;
-    font-weight: bold;
-    margin: 0 auto;
-    width: 25%;
-  }
-}
-@media screen and (max-width: 1300px) {
-  .pageTitleLarge {
-    font-size: 2.8em;
-    font-weight: bold;
-    margin: 0 auto;
-    width: 28%;
-  }
-}
-@media screen and (max-width: 800px) {
-  .pageTitleLarge {
-    font-size: 2.4em;
-    font-weight: bold;
-    margin: 0 auto;
-    width: 40%;
-  }
-}
-@media screen and (max-width: 600px) {
-  .pageTitleLarge {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin: 0 auto;
-    width: 47%;
-  }
-}
-@media screen and (max-width: 400px) {
-  .pageTitleLarge {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin: 0 auto;
-    width: 54%;
+    width: 80%;
+    text-align: center;
   }
 }
 
