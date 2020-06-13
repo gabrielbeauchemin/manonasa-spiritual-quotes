@@ -11,7 +11,7 @@ class TopNavDesktop extends React.Component {
         <div className="menuAndLogo">
           <TopNavMenu language={this.props.language} />
           <div className="logo">
-            <a href="/">
+            <a href={`/?lang=${this.props.language}`}>
               <img src={logo} alt="" width="100%" height="100%" />
             </a>
           </div>
