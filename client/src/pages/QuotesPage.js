@@ -13,7 +13,7 @@ const QuotesPage = (props) => {
   return (
     <>
       <TopNav
-        updateSearchQuery={(lang) => props.updateSearchQuery}
+        updateSearchQuery={props.updateSearchQuery}
         updateLanguage={(lang) => {
           if (lang !== props.language) {
             updateLanguageQueryParam(lang);
