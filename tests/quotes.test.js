@@ -14,6 +14,29 @@ describe("GET /quotes?q=love", () => {
   });
 });
 
+describe("Check SQL injection drop tables", () => {
+  it("should return quotes", async () => {
+    await request(app)
+      .get("/quotes")
+      .query({ q: "love; DROP TABLE SpiritualQuotesSearch" })
+      .then((res) => {
+        expect(res.status).toBe(200);
+        expect(Array.isArray(res.body)).toBe(true);
+        expect(res.body.length).toBe(0);
+      });
+
+    //after that no entries in the table should have been dropped
+    await request(app)
+      .get("/quotes")
+      .query({ q: "love" })
+      .then((res) => {
+        expect(res.status).toBe(200);
+        expect(Array.isArray(res.body)).toBe(true);
+        expect(res.body.length).toBeGreaterThan(0);
+      });
+  });
+});
+
 describe("GET /quotes?q=", () => {
   it("should return quotes", async () => {
     await request(app)

@@ -20,7 +20,13 @@ let getQuotes = function (
                   language: [lang],
                 })}
                 LIMIT ${nbrQuotes} OFFSET ${indexBegin}`;
-  const stmt = db.prepare(query);
+  let stmt = null;
+  try {
+    stmt = db.prepare(query);
+  } catch (e) {
+    console.log(e);
+  }
+
   const spiritualQuotes = stmt.all();
   return spiritualQuotes;
 };
@@ -42,7 +48,13 @@ let getQuotesRandom = function (
                 })}
                 ORDER BY random()
                 LIMIT ${nbrQuotes} OFFSET ${indexBegin}`;
-  const stmt = db.prepare(query);
+  let stmt = null;
+  try {
+    stmt = db.prepare(query);
+  } catch {
+    console.log("ahhhhhhhhhhhhhhhhhhhhh");
+  }
+
   const spiritualQuotes = stmt.all();
   return spiritualQuotes;
 };
@@ -62,7 +74,12 @@ let getRandomQuoteByDay = function (language) {
     dailyQuoteCachedEn = spiritualQuoteEn;
     //match the same quote in fr if possible
     const queryFr = `SELECT * FROM SpiritualQuotesSearch 
-    WHERE language='fr' AND author='${spiritualQuoteEn.author}' AND source='${sourceEnToFr(spiritualQuoteEn.source).replace("'","''")}' AND number='${spiritualQuoteEn.number}'
+    WHERE language='fr' AND author='${
+      spiritualQuoteEn.author
+    }' AND source='${sourceEnToFr(spiritualQuoteEn.source).replace(
+      "'",
+      "''"
+    )}' AND number='${spiritualQuoteEn.number}'
     LIMIT 1`;
     const stmtFr = db.prepare(queryFr);
     const SpiritualQuoteFr = stmtFr.get();
@@ -74,17 +91,14 @@ let getRandomQuoteByDay = function (language) {
   return language === "fr" ? dailyQuoteCachedFr : dailyQuoteCachedEn;
 };
 
-function sourceEnToFr(sourceEn){
-  if(sourceEn === "How to practise Self-inquiery"){
+function sourceEnToFr(sourceEn) {
+  if (sourceEn === "How to practise Self-inquiery") {
     return "Comment pratiquer l'investigation du Soi";
-  }
-  else if (sourceEn === "The Seven Steps to Awakening"){
-    return "Les Sept Étapes Pour S'Éveiller"
-  }
-  else if (sourceEn === "Who am I?"){
-    return "Qui suis-je?"
-  }
-  else{
+  } else if (sourceEn === "The Seven Steps to Awakening") {
+    return "Les Sept Étapes Pour S'Éveiller";
+  } else if (sourceEn === "Who am I?") {
+    return "Qui suis-je?";
+  } else {
     throw "Can't map unknown source";
   }
 }

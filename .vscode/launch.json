@@ -1,20 +1,19 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-      
-      {
-        "type": "node",
-        "request": "launch",
-        "name": "Launch API",
-        "program": "${workspaceFolder}/bin/www"
-      },
-      {
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch API",
+      "program": "${workspaceFolder}/bin/www"
+    },
+    {
       "name": "Test Api",
       "type": "node",
       "request": "launch",
       "runtimeArgs": [
         "--inspect-brk",
-        "${workspaceRoot}/api/node_modules/jest/bin/jest.js",
+        "${workspaceRoot}/node_modules/jest/bin/jest.js",
         "--runInBand",
         "--no-cache"
       ],
@@ -22,7 +21,7 @@
       "internalConsoleOptions": "neverOpen",
       "port": 9229,
       "cwd": "${workspaceRoot}/api",
-      "sourceMaps": false,
+      "sourceMaps": false
     }
-    ]
-  }
+  ]
+}

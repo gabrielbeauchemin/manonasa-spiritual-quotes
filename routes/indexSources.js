@@ -1,13 +1,19 @@
-var express = require('express');
-let quotesManager = require('./quotesManager');
+var express = require("express");
+let quotesManager = require("./quotesManager");
 
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
-  let query = req.query.q == null || req.query.q == "" ? null : req.query.q.split(' ');
-  let lang = req.query.lang == null || req.query.lang == "" ? "en" : req.query.lang;
-  let sources = quotesManager.getSources(query, lang);
-  res.send(sources);
+router.get("/", function (req, res, next) {
+  let query =
+    req.query.q == null || req.query.q == "" ? null : req.query.q.split(" ");
+  let lang =
+    req.query.lang == null || req.query.lang == "" ? "en" : req.query.lang;
+  try {
+    let sources = quotesManager.getSources(query, lang);
+    res.send(sources);
+  } catch {
+    return [];
+  }
 });
 
 module.exports = router;
